@@ -55,7 +55,7 @@ function prepareStudentInfo(jsonData) {
 
     // TODO: interpret jsonObject into student properties
     console.log(jsonObject);
-    student.house = jsonObject.house.toUpperCase();
+    student.house = jsonObject.house;
 
     const info = jsonObject.fullname.split(" ");
     student.firstname = info[0];
@@ -171,7 +171,8 @@ const Student = {
   lastname: "-lastname-",
   middlename: "-middlename-",
   nickname: "-nickname-",
-  house: "-house-"
+  house: "-house-",
+  id: "-id-"
 };
 
 //Add global eventListeners
