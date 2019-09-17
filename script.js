@@ -2,8 +2,7 @@
 
 window.addEventListener("DOMContentLoaded", start);
 
-let students = "http://petlatkea.dk/2019/students1991.json";
-// let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
+let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
 // let family = 'http://petlatkea.dk/2019/hogwartsdata/families.json';
 
 // Todo: Empty array for all students
@@ -55,18 +54,37 @@ function prepareStudentInfo(jsonData) {
 
     // TODO: interpret jsonObject into student properties
     console.log(jsonObject);
-    student.house = jsonObject.house;
+    student.house = jsonObject.house.toLowerCase().trim();
 
-    const info = jsonObject.fullname.split(" ");
-    student.firstname = info[0];
-    //   student.middlename = info[1];
-    //   student.nickname = info[2];
-    student.lastname = info[1];
-    console.log(info);
+    // const info = jsonObject.fullname.split(" ");
+    // student.firstname = info[0];
+    // student.lastname = info[1];
+    // console.log(info);
+    let info = jsonObject.fullname.trim();
+    student.firstname = info.split(" ")[0];
+    let firstLetter = student.firstname.substring(0, 1).toUpperCase();
+    let restOfTheName = student.firstname.substring(1).toLowerCase();
+    student.firstname = firstLetter + restOfTheName;
+    //   student.firstname.substring(0, 1).toUpperCase() +
+    //   student.firstname.substring(1).toLowerCase();
+
+    if (info.split(" ").length === 2) {
+      student.lastname = info.split(" ")[1];
+      student.lastname =
+        student.lastname.substring(0, 1).toUpperCase() +
+        student.lastname.substring(1).toLowerCase();
+    } else if (info.split(" ").length === 3) {
+      student.middlename = info.split(" ")[1];
+      student.lastname = info.split(" ")[2];
+      student.lastname =
+        student.lastname.substring(0, 1).toUpperCase() +
+        student.lastname.substring(1).toLowerCase();
+    }
 
     allStudents.push(student);
   });
   displayList(allStudents);
+  showDetails(allStudents);
 }
 
 // Filter function
@@ -114,10 +132,6 @@ function displayStudent(student) {
     //set clone data
     clone.querySelector(".firstname").textContent =
       "First name: " + student.firstname;
-    clone.querySelector(".middlename").textContent =
-      "Middle name: " + student.middlename;
-    clone.querySelector(".nickname").textContent =
-      "Nick name: " + student.nickname;
     clone.querySelector(".lastname").textContent =
       "Last name: " + student.lastname;
     clone.querySelector(".house").textContent = "House name: " + student.house;
@@ -127,28 +141,39 @@ function displayStudent(student) {
     });
 
     function showDetails(student) {
-      modal.querySelector(".firstname-modal").textContent =
-        "First name: " + student.firstname;
-      modal.querySelector(".lastname-modal").textContent =
-        "Last name: " + student.lastname;
-      modal.querySelector(".house-modal").textContent =
-        "House name: " + student.house;
+      if (student.middlename !== "-middlename-") {
+        modal.querySelector(".firstname-modal").textContent =
+          "First name: " + student.firstname;
+        modal.querySelector(".middlename-modal").textContent =
+          "Middle name:" + student.middlename;
+        modal.querySelector(".lastname-modal").textContent =
+          "Last name: " + student.lastname;
+        modal.querySelector(".house-modal").textContent =
+          "House name: " + student.house;
+      } else {
+        modal.querySelector(".firstname-modal").textContent =
+          "First name: " + student.firstname;
+        modal.querySelector(".lastname-modal").textContent =
+          "Last name: " + student.lastname;
+        modal.querySelector(".house-modal").textContent =
+          "House name: " + student.house;
+      }
       console.log(student.house);
 
-      if (student.house == "Gryffindor" || "gryffindor") {
-        article.style.backgroundColor = "red";
-        article.style.color = "#fff";
-        // img.src = "images/abbott_h.png";
-      } else if (student.house == "Hufflepuff") {
-        article.style.backgroundColor = "orange";
-        article.style.color = "#fff";
-      } else if (student.house == "Slytherin") {
-        article.style.backgroundColor = "green";
-        article.style.color = "#fff";
-      } else if (student.house == "Ravenclaw") {
-        article.style.backgroundColor = "blue";
-        article.style.color = "#fff";
-      }
+      //   if (student.house == "Gryffindor" || "gryffindor") {
+      //     article.style.backgroundColor = "red";
+      //     article.style.color = "#fff";
+      //     // img.src = "images/abbott_h.png";
+      //   } else if (student.house == "Hufflepuff") {
+      //     article.style.backgroundColor = "orange";
+      //     article.style.color = "#fff";
+      //   } else if (student.house == "Slytherin") {
+      //     article.style.backgroundColor = "green";
+      //     article.style.color = "#fff";
+      //   } else if (student.house == "Ravenclaw") {
+      //     article.style.backgroundColor = "blue";
+      //     article.style.color = "#fff";
+      //   }
 
       // html.setAttribute(
       //   "data-attribute",
