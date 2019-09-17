@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body id="wrapper">
+    <!-- TITLE -->
     <h1 id="title">List of students enrolled at Hogwarts in 1991</h1>
 
     <div class="options">
+      <!-- SORT OPTION -->
       <label for="sort" class="sort">Sort by:</label>
       <select name="sort" id="sort">
         <option value="all">All</option>
@@ -18,6 +20,7 @@
         <option value="lastname">Last name</option>
         <option value="house">House</option>
       </select>
+      <!-- FILTER OPTION -->
       <label for="filter" class="filter">Filter by:</label>
       <select name="filter" id="filter">
         <option value="all">All</option>
@@ -27,11 +30,12 @@
         <option value="Slytherin">Slytherin</option>
       </select>
       <hr />
+      <!-- LIST HERE -->
       <main>
         <ol></ol>
       </main>
     </div>
-
+    <!--TEMPLATE -->
     <template id="student">
       <li>
         <h3 class="firstname">First name</h3>
@@ -43,6 +47,8 @@
       </li>
     </template>
 
+    <!-- MODAL -->
+    <!--TODO: add more option !! -->
     <div class="modal-bg hide">
       <article class="modal-content">
         <span class="close">&times;</span>
