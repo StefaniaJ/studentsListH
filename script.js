@@ -57,12 +57,9 @@ function prepareStudentInfo(jsonData) {
     // student.house = jsonObject.house.toLowerCase().trim();
     student.house = jsonObject.house.trim();
 
-    // const info = jsonObject.fullname.split(" ");
-    // student.firstname = info[0];
-    // student.lastname = info[1];
-    // console.log(info);
     let info = jsonObject.fullname.trim();
     student.firstname = info.split(" ")[0];
+
     let firstLetter = student.firstname.substring(0, 1).toUpperCase();
     let restOfTheName = student.firstname.substring(1).toLowerCase();
     student.firstname = firstLetter + restOfTheName;
@@ -90,7 +87,6 @@ function prepareStudentInfo(jsonData) {
     allStudents.push(student);
   });
   displayList(allStudents);
-  //   showDetails(allStudents);
 }
 
 // Filter function
@@ -101,22 +97,28 @@ function filterBy() {
 
 function sortBy() {
   sort = this.value;
-
-  if (sort == "firstname") {
-    allStudents.sort((a, b) => {
-      return a.firstname.localeCompare(b.firstname);
-    });
-  } else if (sort == "lastname") {
-    allStudents.sort((a, b) => {
-      return a.lastname.localeCompare(b.lastname);
-    });
-  } else if (sort == "house") {
-    allStudents.sort((a, b) => {
-      return a.house.localeCompare(b.house);
-    });
-  } else if (sort == "all") {
+  allStudents.sort((a, b) => {
+    return a[sort].localeCompare(b[sort]);
+  });
+  if (sort == "all") {
     start();
   }
+  //   if (sort == "firstname") {
+  //     allStudents.sort((a, b) => {
+  //       return a[sort].localeCompare(b[sort]);
+  //     });
+
+  //   else if (sort == "lastname") {
+  //     allStudents.sort((a, b) => {
+  //       return a.lastname.localeCompare(b.lastname);
+  //     });
+  //   } else if (sort == "house") {
+  //     allStudents.sort((a, b) => {
+  //       return a.house.localeCompare(b.house);
+  //     });
+  //   } else if (sort == "all") {
+  //     start();
+  //   }
   displayList(allStudents);
 }
 
