@@ -54,7 +54,8 @@ function prepareStudentInfo(jsonData) {
 
     // TODO: interpret jsonObject into student properties
     console.log(jsonObject);
-    student.house = jsonObject.house.toLowerCase().trim();
+    // student.house = jsonObject.house.toLowerCase().trim();
+    student.house = jsonObject.house.trim();
 
     // const info = jsonObject.fullname.split(" ");
     // student.firstname = info[0];
@@ -65,8 +66,6 @@ function prepareStudentInfo(jsonData) {
     let firstLetter = student.firstname.substring(0, 1).toUpperCase();
     let restOfTheName = student.firstname.substring(1).toLowerCase();
     student.firstname = firstLetter + restOfTheName;
-    //   student.firstname.substring(0, 1).toUpperCase() +
-    //   student.firstname.substring(1).toLowerCase();
 
     if (info.split(" ").length === 2) {
       student.lastname = info.split(" ")[1];
@@ -79,12 +78,19 @@ function prepareStudentInfo(jsonData) {
       student.lastname =
         student.lastname.substring(0, 1).toUpperCase() +
         student.lastname.substring(1).toLowerCase();
+    } else if (info.split(" ").length === 4) {
+      student.middlename = info.split(" ")[1];
+      student.nickname.info.split(" ")[2];
+      student.lastname = info.split(" ")[3];
+      student.lastname =
+        student.lastname.substring(0, 1).toUpperCase() +
+        student.lastname.substring(1).toLowerCase();
     }
 
     allStudents.push(student);
   });
   displayList(allStudents);
-  showDetails(allStudents);
+  //   showDetails(allStudents);
 }
 
 // Filter function
@@ -142,22 +148,26 @@ function displayStudent(student) {
 
     function showDetails(student) {
       if (student.middlename !== "-middlename-") {
-        modal.querySelector(".firstname-modal").textContent =
-          "First name: " + student.firstname;
         modal.querySelector(".middlename-modal").textContent =
           "Middle name:" + student.middlename;
-        modal.querySelector(".lastname-modal").textContent =
-          "Last name: " + student.lastname;
-        modal.querySelector(".house-modal").textContent =
-          "House name: " + student.house;
       } else {
-        modal.querySelector(".firstname-modal").textContent =
-          "First name: " + student.firstname;
-        modal.querySelector(".lastname-modal").textContent =
-          "Last name: " + student.lastname;
-        modal.querySelector(".house-modal").textContent =
-          "House name: " + student.house;
+        modal.querySelector(".middlename-modal").textContent = "";
       }
+
+      if (student.nickname !== "-nickname-") {
+        modal.querySelector(".nickname-modal").textContent =
+          "Nick name:" + student.nickname;
+      } else {
+        modal.querySelector(".nickname-modal").textContent = "";
+      }
+
+      modal.querySelector(".firstname-modal").textContent =
+        "First name: " + student.firstname;
+      modal.querySelector(".lastname-modal").textContent =
+        "Last name: " + student.lastname;
+      modal.querySelector(".house-modal").textContent =
+        "House name: " + student.house;
+
       console.log(student.house);
 
       //   if (student.house == "Gryffindor" || "gryffindor") {
