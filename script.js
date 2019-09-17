@@ -7,6 +7,8 @@ let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
 
 // Todo: Empty array for all students
 let allStudents = [];
+let currentList = [];
+let clickedStudent;
 
 // Todo: Filter varible
 let filter = "all";
@@ -15,6 +17,7 @@ let filter = "all";
 let sort;
 
 const modal = document.querySelector(".modal-bg");
+// const modalList = document.querySelector(".modal");
 const article = document.querySelector(".modal-content");
 const close = document.querySelector(".close");
 let html = document.querySelector("html");
@@ -32,7 +35,7 @@ function start() {
   document.querySelectorAll("#filter").forEach(option => {
     option.addEventListener("change", filterBy);
   });
-
+  modal.addEventListener("click", clickSomething);
   //Load JSON data
   loadJSON();
 }
@@ -83,6 +86,7 @@ function prepareStudentInfo(jsonData) {
         student.lastname.substring(0, 1).toUpperCase() +
         student.lastname.substring(1).toLowerCase();
     }
+    student.id = uuidv4();
 
     allStudents.push(student);
   });
@@ -130,7 +134,7 @@ function displayList(students) {
   students.forEach(displayStudent);
 }
 
-function displayStudent(student) {
+function displayStudent(student, index) {
   //filter list
   if (filter == student.house || filter == "all") {
     //make a clone
@@ -169,6 +173,12 @@ function displayStudent(student) {
         "Last name: " + student.lastname;
       modal.querySelector(".house-modal").textContent =
         "House name: " + student.house;
+
+      clickedStudent = event.target.parentElement;
+      const removeBtn = document.querySelector("[data-action=remove]");
+      removeBtn.dataset.index = index;
+      removeBtn.dataset.attribute = student.id;
+      console.log(student.id);
 
       console.log(student.house);
 
@@ -214,3 +224,53 @@ const Student = {
 
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
+
+// Function ClickSomething
+
+function clickSomething(event) {
+  //   console.table(currentList);
+  let element = event.target;
+
+  if (element.dataset.action === "remove") {
+    // console.log(`remove button clicked ${element} `);
+
+    const clickedId = element.dataset.attribute;
+
+    function findById(arr, index) {
+      function findId(student) {
+        if (index === student.id) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return arr.findIndex(findId);
+    }
+
+    let listId = findById(allStudents, clickedId);
+    let currentListId = findById(currentList, clickedId);
+    // element.parentElement.parentElement.remove();
+    console.table(student);
+    console.log(allStudents[listId]);
+    console.log(listId);
+    currentList.push(allStudents[listId]);
+
+    // currentList.splice(currentListId, 1);
+    allStudents.splice(listId, 1);
+    clickedStudent.remove();
+    modal.classList.add("hide");
+  } else {
+    console.log("not working");
+  }
+  console.table(allStudents);
+}
+
+function uuidv4() {
+  return "xxxxx-xxxx-4xxx-yxxx-xxxxxx".replace(/[xy]/g, function(c) {
+    let r = (Math.random() * 8) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x4;
+    return v.toString(16);
+  });
+}
+
+console.log(uuidv4());
