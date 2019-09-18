@@ -106,6 +106,17 @@ function prepareStudentInfo(jsonData) {
 
     allStudents.push(student);
   });
+  //Create a new student
+  const newStudent = Object.create(Student);
+  newStudent.firstName = "Janina";
+  newStudent.firstName = "Stefania";
+  newStudent.lastName = "Olteanu";
+  newStudent.house = "Gryffindor";
+  // newStudent.gender = "girl";
+  newStudent.id = "041097";
+  allStudents.push(newStudent);
+  //Call a functionn !!!!!!!!!
+
   displayList(allStudents);
 }
 
