@@ -215,6 +215,10 @@ function displayStudent(student, index) {
       //   }
       // }
 
+      document.querySelector(
+        ".house-img-modal"
+      ).src = `images/houses/${student.house}.png`;
+
       clickedStudent = event.target.parentElement;
       const removeBtn = document.querySelector("[data-action=remove]");
       removeBtn.dataset.index = index;
