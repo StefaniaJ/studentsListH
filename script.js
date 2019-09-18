@@ -174,6 +174,40 @@ function displayStudent(student, index) {
         "Last name: " + student.lastname;
       modal.querySelector(".house-modal").textContent =
         "House name: " + student.house;
+      const imgModal = document.querySelector(".img-modal");
+      imgModal.src =
+        "images/" +
+        student.lastname.toLowerCase() +
+        "_" +
+        student.firstname.substring(0, 1).toLowerCase() +
+        ".png";
+      // // if there are two people with the same last name or no picture or last name wit a dash
+      // let i = 0;
+      // imgModal.addEventListener("error", imgError);
+      // function imgError() {
+      //   if (i == 0) {
+      //     imgModal.src =
+      //       "images/" +
+      //       student.lastname.toLowerCase() +
+      //       "_" +
+      //       student.firstname.toLowerCase() +
+      //       ".png";
+      //     i++;
+      //     // const noImg = document.querySelector(".noImg");
+      //     // noImg.classList.remove("hide");
+      //   } else if (i == 1) {
+      //     let secondLastName = student.lastname.slice(
+      //       student.lastname.indexOf("-") + 1
+      //     );
+      //     imgModal.src =
+      //       "images/" +
+      //       secondLastName.toLowerCase() +
+      //       "_" +
+      //       student.firstname.substring(0, 1).toLowerCase() +
+      //       ".png";
+      //     i++;
+      //   }
+      // }
 
       clickedStudent = event.target.parentElement;
       const removeBtn = document.querySelector("[data-action=remove]");
