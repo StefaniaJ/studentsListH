@@ -91,7 +91,6 @@ button {
   display: none;
 }
 
-/* #sort, */
-/* #filter {
-  text-transform: uppercase;
-} */
+.house-img-modal {
+  width: 100px;
+}
