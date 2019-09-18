@@ -102,6 +102,7 @@ function prepareStudentInfo(jsonData) {
         student.lastname.substring(0, 1).toUpperCase() +
         student.lastname.substring(1).toLowerCase();
     }
+    student.gender = jsonObject.gender;
     student.id = uuidv4();
 
     allStudents.push(student);
@@ -112,7 +113,7 @@ function prepareStudentInfo(jsonData) {
   newStudent.middlename = "Stefania";
   newStudent.lastname = "Olteanu";
   newStudent.house = "Gryffindor";
-  // newStudent.gender = "girl";
+  newStudent.gender = "girl";
   newStudent.id = "041097";
   allStudents.push(newStudent);
   // rebuildList();
@@ -210,6 +211,8 @@ function displayStudent(student, index) {
         "Last name: " + student.lastname;
       modal.querySelector(".house-modal").textContent =
         "House name: " + student.house;
+      modal.querySelector(".gender-modal").textContent =
+        "Gender: " + student.gender;
 
       const imgModal = document.querySelector(".img-modal");
       imgModal.src =
@@ -322,6 +325,7 @@ const Student = {
   middlename: "-middlename-",
   nickname: "-nickname-",
   house: "-house-",
+  gender: "-gender-",
   id: "-id-"
 };
 
