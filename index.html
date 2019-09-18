@@ -10,13 +10,14 @@
   <body id="wrapper">
     <!-- TITLE -->
     <h1 id="title">List of students enrolled at Hogwarts in 1991</h1>
-    <p>Expelled students: <span id="expelledStudents"></span></p>
-    <p>Non expelled students: <span id="nonExpelledStudents"></span></p>
-    <p>Gryffindor: <span id="gryffindorStudents"></span></p>
-    <p>Ravenclaw: <span id="ravenclawStudents"></span></p>
-    <p>Hufflepuff: <span id="hufflepuffStudents"></span></p>
-    <p>Slytherin: <span id="slytherinStudents"></span></p>
-
+    <div class="list">
+      <p>Expelled students: <span class="expelledStudents"></span></p>
+      <p>Non expelled students: <span class="nonExpelledStudents"></span></p>
+      <p>Gryffindor: <span class="gryffindorStudents"></span></p>
+      <p>Ravenclaw: <span class="ravenclawStudents"></span></p>
+      <p>Hufflepuff: <span class="hufflepuffStudents"></span></p>
+      <p>Slytherin: <span class="slytherinStudents"></span></p>
+    </div>
     <div class="options">
       <!-- SORT OPTION -->
       <label for="sort" class="sort">Sort by:</label>
@@ -38,7 +39,7 @@
       <hr />
       <!-- LIST HERE -->
       <main>
-        <ol></ol>
+        <ol class="listInfo"></ol>
       </main>
     </div>
     <!--TEMPLATE -->
@@ -49,6 +50,7 @@
         <h3 class="nickname hide">Nick name</h3>
         <h3 class="lastname">Last name</h3>
         <p class="house">House</p>
+        <button data-action="remove" data-id="uuid">remove</button>
         <button class="btn" data-student="">More info</button>
       </li>
     </template>
@@ -69,7 +71,7 @@
         <img class="house-img-modal" src="" alt="" />
         <!-- <img class="noImg hide" src="images/no-image-available.png";"  /> -->
 
-        <button data-action="remove">remove</button>
+        <!-- <button data-action="remove">remove</button> -->
       </article>
     </div>
 

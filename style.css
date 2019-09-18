@@ -95,3 +95,40 @@ button {
 .house-img-modal {
   width: 100px;
 }
+
+/* .remove {
+  animation: remove 0.5s linear 1 forwards;
+  color: rgb(124, 0, 0);
+} */
+
+/* .remove {
+  animation: zoomIn 3s forwards;
+}
+
+@keyframes zoomIn {
+  to {
+    transform: scale(100);
+  }
+} */
+
+.remove {
+  animation: remove 2s forwards;
+}
+
+@keyframes remove {
+  0% {
+    bottom: 20px;
+    left: 600px;
+  }
+
+  50% {
+    transform: translateY(-100px);
+    animation-timing-function: cubic-bezier(0.23, 0.66, 0.77, 0.57);
+  }
+
+  100% {
+    bottom: 250px;
+    left: 500px;
+    background-size: 1px;
+  }
+}
