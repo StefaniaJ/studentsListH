@@ -110,25 +110,22 @@ function sortBy() {
   allStudents.sort((a, b) => {
     return a[sort].localeCompare(b[sort]);
   });
-  if (sort == "all") {
-    start();
-  }
-  //   if (sort == "firstname") {
-  //     allStudents.sort((a, b) => {
-  //       return a[sort].localeCompare(b[sort]);
-  //     });
 
-  //   else if (sort == "lastname") {
-  //     allStudents.sort((a, b) => {
-  //       return a.lastname.localeCompare(b.lastname);
-  //     });
-  //   } else if (sort == "house") {
-  //     allStudents.sort((a, b) => {
-  //       return a.house.localeCompare(b.house);
-  //     });
-  //   } else if (sort == "all") {
-  //     start();
-  //   }
+  // if (sort == "firstname") {
+  //   allStudents.sort((a, b) => {
+  //     return a[sort].localeCompare(b[sort]);
+  //   });
+  // } else if (sort == "lastname") {
+  //   allStudents.sort((a, b) => {
+  //     return a.lastname.localeCompare(b.lastname);
+  //   });
+  // } else if (sort == "house") {
+  //   allStudents.sort((a, b) => {
+  //     return a.house.localeCompare(b.house);
+  //   });
+  // } else if (sort == "all") {
+  //   start();
+  // }
   displayList(allStudents);
 }
 
@@ -288,7 +285,6 @@ function clickSomething(event) {
     document.querySelector("#nonExpelledStudents").innerHTML =
       allStudents.length - 1;
 
-    // currentList.splice(currentListId, 1);
     allStudents.splice(listId, 1);
     clickedStudent.remove();
     modal.classList.add("hide");
@@ -305,5 +301,4 @@ function uuidv4() {
     return v.toString(16);
   });
 }
-
-console.log(uuidv4());
+// console.log(uuidv4());

@@ -17,13 +17,14 @@ html[data-colors="Slytherin"] {
   --color-text: white;
   --color-bg: green;
 }
-/* html {
+html {
   text-transform: uppercase;
 }
 
-select {
+/* select {
   text-transform: uppercase;
 } */
+
 /* 
 button {
     background-color: black;
