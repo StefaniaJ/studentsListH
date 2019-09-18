@@ -9,6 +9,7 @@ let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
 let allStudents = [];
 let currentList = [];
 let clickedStudent;
+let expelledList = [];
 
 // Todo: Filter varible
 let filter = "all";
@@ -254,6 +255,8 @@ function clickSomething(event) {
     console.log(allStudents[listId]);
     console.log(listId);
     currentList.push(allStudents[listId]);
+    expelledList.push(allStudents[listId]);
+    document.querySelector("#expelledStudents").innerHTML = expelledList.length;
 
     // currentList.splice(currentListId, 1);
     allStudents.splice(listId, 1);
