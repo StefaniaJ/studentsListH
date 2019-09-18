@@ -1,3 +1,29 @@
+html[data-colors="Gryffindor"] {
+  --color-text: white;
+  --color-bg: red;
+}
+
+html[data-colors="Hufflepuff"] {
+  --color-text: white;
+  --color-bg: rgb(236, 236, 11);
+}
+
+html[data-colors="Ravenclaw"] {
+  --color-text: white;
+  --color-bg: blue;
+}
+
+html[data-colors="Slytherin"] {
+  --color-text: white;
+  --color-bg: green;
+}
+/* html {
+  text-transform: uppercase;
+}
+
+select {
+  text-transform: uppercase;
+} */
 /* 
 button {
     background-color: black;
@@ -28,7 +54,8 @@ button {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   width: 80%;
   height: 85%;
   margin: auto;

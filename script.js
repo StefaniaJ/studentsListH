@@ -17,6 +17,8 @@ let filter = "all";
 // Todo: Sort varible
 let sort;
 
+const root = document.documentElement;
+
 const modal = document.querySelector(".modal-bg");
 // const modalList = document.querySelector(".modal");
 const article = document.querySelector(".modal-content");
@@ -58,8 +60,11 @@ function prepareStudentInfo(jsonData) {
 
     // TODO: interpret jsonObject into student properties
     console.log(jsonObject);
-    // student.house = jsonObject.house.toLowerCase().trim();
+
     student.house = jsonObject.house.trim();
+    student.house =
+      student.house.substring(0, 1).toUpperCase() +
+      student.house.substring(1).toLowerCase();
 
     let info = jsonObject.fullname.trim();
     student.firstname = info.split(" ")[0];
@@ -174,6 +179,7 @@ function displayStudent(student, index) {
         "Last name: " + student.lastname;
       modal.querySelector(".house-modal").textContent =
         "House name: " + student.house;
+
       const imgModal = document.querySelector(".img-modal");
       imgModal.src =
         "images/" +
@@ -181,7 +187,7 @@ function displayStudent(student, index) {
         "_" +
         student.firstname.substring(0, 1).toLowerCase() +
         ".png";
-      // // if there are two people with the same last name or no picture or last name wit a dash
+      // // 2 students with the same last name or no picture or last name wit a dash
       // let i = 0;
       // imgModal.addEventListener("error", imgError);
       // function imgError() {
@@ -232,19 +238,18 @@ function displayStudent(student, index) {
       //     article.style.color = "#fff";
       //   }
 
-      // html.setAttribute(
-      //   "data-attribute",
-      //   `${student.house.toLowerCase()}-colors`
-      // );
-
+      modalColors(student.house);
       modal.classList.remove("hide");
     }
-    // //ADDING HOUSE ATTRIBUTE
-    // clone.querySelector("tr").setAttribute("house", student.house);
 
     //append clone to list
     document.querySelector("ol").appendChild(clone);
   }
+}
+
+// modal colors
+function modalColors(house) {
+  root.dataset.colors = house;
 }
 
 // Our prototpype Student
