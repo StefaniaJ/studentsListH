@@ -227,21 +227,6 @@ function displayStudent(student, index) {
 
       console.log(student.house);
 
-      //   if (student.house == "Gryffindor" || "gryffindor") {
-      //     article.style.backgroundColor = "red";
-      //     article.style.color = "#fff";
-      //     // img.src = "images/abbott_h.png";
-      //   } else if (student.house == "Hufflepuff") {
-      //     article.style.backgroundColor = "orange";
-      //     article.style.color = "#fff";
-      //   } else if (student.house == "Slytherin") {
-      //     article.style.backgroundColor = "green";
-      //     article.style.color = "#fff";
-      //   } else if (student.house == "Ravenclaw") {
-      //     article.style.backgroundColor = "blue";
-      //     article.style.color = "#fff";
-      //   }
-
       modalColors(student.house);
       modal.classList.remove("hide");
     }
@@ -300,6 +285,8 @@ function clickSomething(event) {
     currentList.push(allStudents[listId]);
     expelledList.push(allStudents[listId]);
     document.querySelector("#expelledStudents").innerHTML = expelledList.length;
+    document.querySelector("#nonExpelledStudents").innerHTML =
+      allStudents.length - 1;
 
     // currentList.splice(currentListId, 1);
     allStudents.splice(listId, 1);
