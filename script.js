@@ -48,7 +48,7 @@ function start() {
   });
   // modal.addEventListener("click", clickSomething);
 
-  listInfo.addEventListener("click", expell);
+  listInfo.addEventListener("click", expellStudent);
   //Load JSON data
   loadJSON();
 }
@@ -108,17 +108,23 @@ function prepareStudentInfo(jsonData) {
   });
   //Create a new student
   const newStudent = Object.create(Student);
-  newStudent.firstName = "Janina";
-  newStudent.firstName = "Stefania";
-  newStudent.lastName = "Olteanu";
+  newStudent.firstname = "Janina";
+  newStudent.middlename = "Stefania";
+  newStudent.lastname = "Olteanu";
   newStudent.house = "Gryffindor";
   // newStudent.gender = "girl";
   newStudent.id = "041097";
   allStudents.push(newStudent);
-  //Call a functionn !!!!!!!!!
+  // rebuildList();
 
   displayList(allStudents);
 }
+
+// function rebuildList() {
+//   sortBy("all");
+//   filterBy("all");
+//   displayList(currentList);
+// }
 
 // Filter function
 function filterBy() {
@@ -156,7 +162,7 @@ function displayList(students) {
 
   //make a new list
   students.forEach(displayStudent);
-  showListInfo(currentList);
+  displayListDetails(currentList);
 }
 
 function displayStudent(student, index) {
@@ -267,15 +273,15 @@ function modalColors(house) {
 }
 
 //DISPLAYING LIST DETAILS
-function showListInfo(currentList) {
+function displayListDetails(currentList) {
   nonExpelledStudents.textContent = allStudents.length;
   expelledStudents.textContent = expelledList.length;
   console.log(expelledList);
 }
 //EXPELLING STUDENTS
-function expell(event) {
+function expellStudent(event) {
   let element = event.target;
-  if (element.dataset.action === "remove") {
+  if (element.dataset.action === "remove" && element.dataset.id !== "041097") {
     const clickedId = element.dataset.attribute;
 
     function findById(arr, index) {
@@ -300,14 +306,13 @@ function expell(event) {
     element.parentElement.addEventListener("animationend", function() {
       element.parentElement.remove();
     });
-    showListInfo(currentList, expelledList);
+    displayListDetails(currentList, expelledList);
+  } else if (element.dataset.id === "041097") {
+    element.parentElement.classList.add("donttouch");
+    element.parentElement.addEventListener("animationend", function() {
+      element.parentElement.classList.remove("donttouch");
+    });
   }
-  // } else if (element.dataset.id === "666") {
-  //   element.parentElement.classList.add("cantremove");
-  //   element.parentElement.addEventListener("animationend", function() {
-  //     element.parentElement.classList.remove("cantremove");
-  //   });
-  // }
 }
 
 // Our prototpype Student
@@ -323,6 +328,48 @@ const Student = {
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
 
+// // Function ClickSomething
+
+// function clickSomething(event) {
+//   //   console.table(currentList);
+//   let element = event.target;
+
+//   if (element.dataset.action === "remove") {
+//     // console.log(`remove button clicked ${element} `);
+
+//     const clickedId = element.dataset.attribute;
+
+//     function findById(arr, index) {
+//       function findId(student) {
+//         if (index === student.id) {
+//           return true;
+//         } else {
+//           return false;
+//         }
+//       }
+//       return arr.findIndex(findId);
+//     }
+
+//     let listId = findById(allStudents, clickedId);
+//     let currentListId = findById(currentList, clickedId);
+//     // element.parentElement.parentElement.remove();
+//     console.table(student);
+//     console.log(allStudents[listId]);
+//     console.log(listId);
+//     currentList.push(allStudents[listId]);
+//     expelledList.push(allStudents[listId]);
+//     document.querySelector("#expelledStudents").innerHTML = expelledList.length;
+//     document.querySelector("#nonExpelledStudents").innerHTML =
+//       allStudents.length - 1;
+
+//     allStudents.splice(listId, 1);
+//     clickedStudent.remove();
+//     modal.classList.add("hide");
+//   } else {
+//     console.log("not working");
+//   }
+//   console.table(allStudents);
+// }
 //HOW TO CREATE UUID
 // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
