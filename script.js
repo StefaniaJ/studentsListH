@@ -2,49 +2,46 @@
 
 window.addEventListener("DOMContentLoaded", start);
 
+//LINKS
 let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
 // let family = 'http://petlatkea.dk/2019/hogwartsdata/families.json';
 
-// Todo: Empty array for all students
+// Todo: EMPTY ARREYS
 let allStudents = [];
 let currentList = [];
-
 let expelledList = [];
 
-// Todo: Filter varible
+// Todo: Set the filter
 let filter = "all";
 
-// Todo: Sort varible
+// Todo: Set the sort
 let sort;
 
+// GLOBAL VARIABLES
 const root = document.documentElement;
-
 const modal = document.querySelector(".modal-bg");
-// const modalList = document.querySelector(".modal");
 const article = document.querySelector(".modal-content");
 const close = document.querySelector(".close");
-let html = document.querySelector("html");
-let img = document.querySelector(".img");
 
-let nonExpelledStudents = document.querySelector(".nonExpelledStudents");
-let expelledStudents = document.querySelector(".expelledStudents");
-let gryffindorStudents = document.querySelector(".gryffindorStudents");
-let ravenclawStudents = document.querySelector(".ravenclawStudents");
-let hufflepuffStudents = document.querySelector(".hufflepuffStudents");
-let slytherinStudents = document.querySelector(".slytherinStudents");
-let listInfo = document.querySelector("#mainslisttudents");
+const nonExpelledStudents = document.querySelector(".nonExpelledStudents");
+const expelledStudents = document.querySelector(".expelledStudents");
+const gryffindorStudents = document.querySelector(".gryffindorStudents");
+const ravenclawStudents = document.querySelector(".ravenclawStudents");
+const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
+const slytherinStudents = document.querySelector(".slytherinStudents");
+const listInfo = document.querySelector("#mainslisttudents");
 
 function start() {
   console.log("Ready");
 
   // AddEventListener for sort
   document.querySelectorAll("#sort").forEach(Option => {
-    Option.addEventListener("change", sortBy);
+    Option.addEventListener("change", sortStudents);
   });
 
   // AddEventListener for filter
   document.querySelectorAll("#filter").forEach(option => {
-    option.addEventListener("change", filterBy);
+    option.addEventListener("change", filterStudents);
   });
   // modal.addEventListener("click", clickSomething);
 
@@ -116,50 +113,74 @@ function prepareStudentInfo(jsonData) {
   newStudent.gender = "girl";
   newStudent.id = "041097";
   allStudents.push(newStudent);
-  // rebuildList();
-
-  displayList(allStudents);
+  rebuildList();
 }
 
-// function rebuildList() {
-//   sortBy("all");
-//   filterBy("all");
-//   displayList(currentList);
-// }
-
-// Filter function
-function filterBy() {
-  filter = this.value;
-  // currentList = allStudents.filter(students => {
-  //   return true;
-  // });
-  displayList(allStudents);
+function rebuildList() {
+  filterStudentsBy("all");
+  sortStudentsBy("all");
+  displayList(currentList);
 }
 
-function sortBy() {
-  sort = this.value;
-  currentList = allStudents;
-  allStudents.sort((a, b) => {
-    return a[sort].localeCompare(b[sort]);
-  });
-
-  // if (sort == "firstname") {
-  //   allStudents.sort((a, b) => {
-  //     return a[sort].localeCompare(b[sort]);
-  //   });
-  // } else if (sort == "lastname") {
-  //   allStudents.sort((a, b) => {
-  //     return a.lastname.localeCompare(b.lastname);
-  //   });
-  // } else if (sort == "house") {
-  //   allStudents.sort((a, b) => {
-  //     return a.house.localeCompare(b.house);
-  //   });
-  // } else if (sort == "all") {
-  //   start();
+function filterStudents(event) {
+  const filterBy = event.target.value;
+  // if (filterBy === "expelled") {
+  //   displayList(expelledList);
+  // } else {
+  filterStudentsBy(filterBy);
+  displayList(currentList);
   // }
-  displayList(allStudents);
 }
+
+//FILTER DATA FUNCTION
+function filterStudentsBy(filterBy) {
+  currentList = allStudents.filter(filterByHouse);
+  function filterByHouse(student) {
+    if (student.house === filterBy || filterBy === "all") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  return currentList.length;
+}
+
+// SORT FUNCTION
+function sortStudents(event) {
+  const sortBy = event.target.value;
+  sortStudentsBy(sortBy);
+  displayList(currentList);
+}
+
+function sortStudentsBy(prop) {
+  currentList.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
+}
+
+// function sortBy() {
+//   sort = this.value;
+
+//   // currentList = allStudents;
+//   allStudents.sort((a, b) => {
+//     return a[sort].localeCompare(b[sort]);
+//   });
+
+// // if (sort == "firstname") {
+// //   allStudents.sort((a, b) => {
+// //     return a[sort].localeCompare(b[sort]);
+// //   });
+// // } else if (sort == "lastname") {
+// //   allStudents.sort((a, b) => {
+// //     return a.lastname.localeCompare(b.lastname);
+// //   });
+// // } else if (sort == "house") {
+// //   allStudents.sort((a, b) => {
+// //     return a.house.localeCompare(b.house);
+// //   });
+// // } else if (sort == "all") {
+// //   start();
+// // }
+//   displayList(allStudents);
+// }
 
 function displayList(students) {
   //clear the students list
@@ -171,115 +192,112 @@ function displayList(students) {
 }
 
 function displayStudent(student, index) {
-  //filter list
-  if (filter == student.house || filter == "all") {
-    //make a clone
-    const template = document.querySelector("#student");
-    const clone = template.cloneNode(true).content;
+  //make a clone
+  const template = document.querySelector("#student");
+  const clone = template.cloneNode(true).content;
 
-    //set clone data
-    clone.querySelector(".firstname").textContent =
+  //set clone data
+  clone.querySelector(".firstname").textContent =
+    "First name: " + student.firstname;
+  clone.querySelector(".lastname").textContent =
+    "Last name: " + student.lastname;
+  clone.querySelector(".house").textContent = "House name: " + student.house;
+
+  // store the index on the button
+  clone.querySelector("[data-action=remove]").dataset.index = index;
+
+  // add uuid as the ID to the remove-button as a data attribute
+  clone.querySelector("[data-id=uuid]").dataset.id = student.id;
+
+  let imgTemp = clone.querySelector(".img-template");
+  imgTemp.src =
+    "images/" +
+    student.lastname.toLowerCase() +
+    "_" +
+    student.firstname.substring(0, 1).toLowerCase() +
+    ".png";
+
+  clone.querySelector(".btn").addEventListener("click", () => {
+    showDetails(student);
+  });
+
+  function showDetails(student) {
+    if (student.middlename !== "-middlename-") {
+      modal.querySelector(".middlename-modal").textContent =
+        "Middle name:" + student.middlename;
+    } else {
+      modal.querySelector(".middlename-modal").textContent = "";
+    }
+
+    if (student.nickname !== "-nickname-") {
+      modal.querySelector(".nickname-modal").textContent =
+        "Nick name:" + student.nickname;
+    } else {
+      modal.querySelector(".nickname-modal").textContent = "";
+    }
+
+    modal.querySelector(".firstname-modal").textContent =
       "First name: " + student.firstname;
-    clone.querySelector(".lastname").textContent =
+    modal.querySelector(".lastname-modal").textContent =
       "Last name: " + student.lastname;
-    clone.querySelector(".house").textContent = "House name: " + student.house;
+    modal.querySelector(".house-modal").textContent =
+      "House name: " + student.house;
+    modal.querySelector(".gender-modal").textContent =
+      "Gender: " + student.gender;
 
-    // store the index on the button
-    clone.querySelector("[data-action=remove]").dataset.index = index;
-
-    // add uuid as the ID to the remove-button as a data attribute
-    clone.querySelector("[data-id=uuid]").dataset.id = student.id;
-
-    let imgTemp = clone.querySelector(".img-template");
-    imgTemp.src =
+    let imgModal = document.querySelector(".img-modal");
+    imgModal.src =
       "images/" +
       student.lastname.toLowerCase() +
       "_" +
       student.firstname.substring(0, 1).toLowerCase() +
       ".png";
+    // 2 students with the same last name or no picture or last name wit a dash
+    let i = 0;
+    // imgModal.addEventListener("error", imgError);
+    // function imgError() {
+    //   if (i == 0) {
+    //     imgModal.src =
+    //       "images/" +
+    //       student.lastname.toLowerCase() +
+    //       "_" +
+    //       student.firstname.toLowerCase() +
+    //       ".png";
+    //     i++;
+    //     // const noImg = document.querySelector(".noImg");
+    //     // noImg.classList.remove("hide");
+    //   } else if (i == 1) {
+    //     let secondLastName = student.lastname.slice(
+    //       student.lastname.indexOf("-") + 1
+    //     );
+    //     imgModal.src =
+    //       "images/" +
+    //       secondLastName.toLowerCase() +
+    //       "_" +
+    //       student.firstname.substring(0, 1).toLowerCase() +
+    //       ".png";
+    //     i++;
+    //   }
+    // }
 
-    clone.querySelector(".btn").addEventListener("click", () => {
-      showDetails(student);
-    });
+    document.querySelector(
+      ".house-img-modal"
+    ).src = `images/houses/${student.house}.png`;
 
-    function showDetails(student) {
-      if (student.middlename !== "-middlename-") {
-        modal.querySelector(".middlename-modal").textContent =
-          "Middle name:" + student.middlename;
-      } else {
-        modal.querySelector(".middlename-modal").textContent = "";
-      }
+    // clickedStudent = event.target.parentElement;
+    // const removeBtn = document.querySelector("[data-action=remove]");
+    // removeBtn.dataset.index = index;
+    // removeBtn.dataset.attribute = student.id;
+    // console.log(student.id);
 
-      if (student.nickname !== "-nickname-") {
-        modal.querySelector(".nickname-modal").textContent =
-          "Nick name:" + student.nickname;
-      } else {
-        modal.querySelector(".nickname-modal").textContent = "";
-      }
+    // console.log(student.house);
 
-      modal.querySelector(".firstname-modal").textContent =
-        "First name: " + student.firstname;
-      modal.querySelector(".lastname-modal").textContent =
-        "Last name: " + student.lastname;
-      modal.querySelector(".house-modal").textContent =
-        "House name: " + student.house;
-      modal.querySelector(".gender-modal").textContent =
-        "Gender: " + student.gender;
-
-      let imgModal = document.querySelector(".img-modal");
-      imgModal.src =
-        "images/" +
-        student.lastname.toLowerCase() +
-        "_" +
-        student.firstname.substring(0, 1).toLowerCase() +
-        ".png";
-      // 2 students with the same last name or no picture or last name wit a dash
-      let i = 0;
-      // imgModal.addEventListener("error", imgError);
-      // function imgError() {
-      //   if (i == 0) {
-      //     imgModal.src =
-      //       "images/" +
-      //       student.lastname.toLowerCase() +
-      //       "_" +
-      //       student.firstname.toLowerCase() +
-      //       ".png";
-      //     i++;
-      //     // const noImg = document.querySelector(".noImg");
-      //     // noImg.classList.remove("hide");
-      //   } else if (i == 1) {
-      //     let secondLastName = student.lastname.slice(
-      //       student.lastname.indexOf("-") + 1
-      //     );
-      //     imgModal.src =
-      //       "images/" +
-      //       secondLastName.toLowerCase() +
-      //       "_" +
-      //       student.firstname.substring(0, 1).toLowerCase() +
-      //       ".png";
-      //     i++;
-      //   }
-      // }
-
-      document.querySelector(
-        ".house-img-modal"
-      ).src = `images/houses/${student.house}.png`;
-
-      // clickedStudent = event.target.parentElement;
-      // const removeBtn = document.querySelector("[data-action=remove]");
-      // removeBtn.dataset.index = index;
-      // removeBtn.dataset.attribute = student.id;
-      // console.log(student.id);
-
-      // console.log(student.house);
-
-      modalColors(student.house);
-      modal.classList.remove("hide");
-    }
-
-    //append clone to list
-    document.querySelector("#mainslisttudents").appendChild(clone);
+    modalColors(student.house);
+    modal.classList.remove("hide");
   }
+
+  //append clone to list
+  document.querySelector("#mainslisttudents").appendChild(clone);
 }
 
 // modal colors
@@ -291,13 +309,30 @@ function modalColors(house) {
 function displayListDetails(currentList) {
   nonExpelledStudents.textContent = allStudents.length;
   expelledStudents.textContent = expelledList.length;
+  ravenclawStudents.textContent = countStudentsHouse("Ravenclaw");
+  slytherinStudents.textContent = countStudentsHouse("Slytherin");
+  gryffindorStudents.textContent = countStudentsHouse("Gryffindor");
+  hufflepuffStudents.textContent = countStudentsHouse("Hufflepuff");
+
+  function countStudentsHouse(house) {
+    // return allStudents.filter(x => x.house === house).length;
+    let group = allStudents.filter(filterBy);
+    function filterBy(student) {
+      if (student.house === house || house === "all") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return group.length;
+  }
   console.log(expelledList);
 }
 //EXPELLING STUDENTS
 function expellStudent(event) {
   let element = event.target;
   if (element.dataset.action === "remove" && element.dataset.id !== "041097") {
-    const clickedId = element.dataset.attribute;
+    const clickedId = element.dataset.id;
 
     function findById(arr, index) {
       function findId(student) {
@@ -344,48 +379,6 @@ const Student = {
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
 
-// // Function ClickSomething
-
-// function clickSomething(event) {
-//   //   console.table(currentList);
-//   let element = event.target;
-
-//   if (element.dataset.action === "remove") {
-//     // console.log(`remove button clicked ${element} `);
-
-//     const clickedId = element.dataset.attribute;
-
-//     function findById(arr, index) {
-//       function findId(student) {
-//         if (index === student.id) {
-//           return true;
-//         } else {
-//           return false;
-//         }
-//       }
-//       return arr.findIndex(findId);
-//     }
-
-//     let listId = findById(allStudents, clickedId);
-//     let currentListId = findById(currentList, clickedId);
-//     // element.parentElement.parentElement.remove();
-//     console.table(student);
-//     console.log(allStudents[listId]);
-//     console.log(listId);
-//     currentList.push(allStudents[listId]);
-//     expelledList.push(allStudents[listId]);
-//     document.querySelector("#expelledStudents").innerHTML = expelledList.length;
-//     document.querySelector("#nonExpelledStudents").innerHTML =
-//       allStudents.length - 1;
-
-//     allStudents.splice(listId, 1);
-//     clickedStudent.remove();
-//     modal.classList.add("hide");
-//   } else {
-//     console.log("not working");
-//   }
-//   console.table(allStudents);
-// }
 //HOW TO CREATE UUID
 // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {

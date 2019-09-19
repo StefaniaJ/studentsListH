@@ -246,6 +246,7 @@ main {
   grid-area: main;
 }
 
-.img-template {
+.img-template,
+.img-modal {
   width: 100px;
 }
