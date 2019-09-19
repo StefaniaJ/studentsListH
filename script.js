@@ -49,14 +49,15 @@ function start() {
   // AddEventListener for expell a student
   listInfo.addEventListener("click", expellStudent);
 
+  // AddEventListener for showing expelled students
   displayExpelledList.addEventListener("click", seeExpelled);
 
   //Load JSON data
   loadJSON();
 }
 
+// SEEEXPELLED FUNCTION
 function seeExpelled() {
-  displayExpelledList.classList.add("show");
   displayList(expelledList);
 }
 
@@ -372,6 +373,10 @@ const Student = {
 
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
+// expell -
+//   close.addEventListener("click", () =>
+//     document.querySelector(".expell-bg").classList.add("hide")
+//   );
 
 //HOW TO CREATE UUID
 // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript

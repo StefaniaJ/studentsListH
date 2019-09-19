@@ -1,3 +1,6 @@
+html {
+  text-transform: uppercase;
+}
 html[data-colors="Gryffindor"] {
   --color-text: white;
   --color-bg: red;
@@ -17,31 +20,7 @@ html[data-colors="Slytherin"] {
   --color-text: white;
   --color-bg: green;
 }
-html {
-  text-transform: uppercase;
-}
 
-/* select {
-  text-transform: uppercase;
-} */
-
-/* 
-button {
-    background-color: black;
-    color: white;
-    padding: 8px 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.8;
-    position: absolute;
-    left: 0px;
-  }
-  
-  button a {
-    border: 5px solid #d4b13b;
-    padding: 4px;
-  } */
 /* ////////  Modal ///////*/
 
 .modal-bg {
@@ -66,16 +45,6 @@ button {
   text-align: center;
 }
 
-.show {
-  width: 80%;
-  height: 85%;
-  margin: auto;
-  margin-top: 5%;
-  overflow: scroll;
-  padding: 1em;
-  background-color: brown;
-}
-
 /* /// Close Button /// */
 .close {
   color: #aaaaaa;
@@ -97,6 +66,42 @@ button {
 
 .house-img-modal {
   width: 100px;
+}
+
+/* EXPELLe*/
+
+.expell-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+}
+.expell-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: -6px;
+  margin-top: 17px;
+}
+.expell-close:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.expell-content {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  width: 80%;
+  height: 85%;
+  margin: auto;
+  margin-top: 5%;
+  overflow: scroll;
+  padding: 1em;
+  text-align: center;
 }
 
 /* .remove {
