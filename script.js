@@ -11,10 +11,10 @@ let allStudents = [];
 let currentList = [];
 let expelledList = [];
 
-// Todo: Set the filter
+// Set the filter
 let filter = "all";
 
-// Todo: Set the sort
+// Set the sort
 let sort;
 
 // GLOBAL VARIABLES
@@ -44,6 +44,7 @@ function start() {
   document.querySelectorAll("#filter").forEach(option => {
     option.addEventListener("change", filterStudents);
   });
+
   // AddEventListener for expell a student
   listInfo.addEventListener("click", expellStudent);
 
@@ -51,29 +52,39 @@ function start() {
   loadJSON();
 }
 
+// LOADJSON FUNCTION
 function loadJSON() {
   fetch(students)
     .then(Response => Response.json())
     .then(jsonData => {
       students = jsonData;
-      // when the data loaded, display the list
+      // When the data loaded, prepare the students list
       prepareStudentInfo(jsonData);
     });
 }
 
+// PREPARESTUDENTINFO FUNCTION
 function prepareStudentInfo(jsonData) {
   jsonData.forEach(jsonObject => {
-    // TODO: Create new object with cleaned data
+    // Create new object with cleaned data
     const student = Object.create(Student);
 
-    // TODO: interpret jsonObject into student properties
+    // Interpret jsonObject into student properties
     console.log(jsonObject);
 
+    //Edit the house name
     student.house = jsonObject.house.trim();
     student.house =
       student.house.substring(0, 1).toUpperCase() +
       student.house.substring(1).toLowerCase();
 
+    //Fix the gender
+    student.gender = jsonObject.gender;
+
+    //Fix the id for every students students
+    student.id = uuidv4();
+
+    //Edit the name
     let info = jsonObject.fullname.trim();
     student.firstname = info.split(" ")[0];
 
@@ -100,11 +111,9 @@ function prepareStudentInfo(jsonData) {
         student.lastname.substring(0, 1).toUpperCase() +
         student.lastname.substring(1).toLowerCase();
     }
-    student.gender = jsonObject.gender;
-    student.id = uuidv4();
-
     allStudents.push(student);
   });
+
   //Create a new student
   const newStudent = Object.create(Student);
   newStudent.firstname = "Janina";
@@ -114,15 +123,18 @@ function prepareStudentInfo(jsonData) {
   newStudent.gender = "girl";
   newStudent.id = "041097";
   allStudents.push(newStudent);
+
+  //Rebuild the list
   rebuildList();
 }
-
+//REBUILD FUNCTION
 function rebuildList() {
   filterStudentsBy("all");
   sortStudentsBy("all");
   displayList(currentList);
 }
 
+//FILTER
 function filterStudents(event) {
   const filterBy = event.target.value;
   // if (filterBy === "expelled") {
@@ -133,7 +145,7 @@ function filterStudents(event) {
   // }
 }
 
-//FILTER DATA FUNCTION
+//FILTER FUNCTION
 function filterStudentsBy(filterBy) {
   currentList = allStudents.filter(filterByHouse);
   function filterByHouse(student) {
@@ -146,13 +158,14 @@ function filterStudentsBy(filterBy) {
   return currentList.length;
 }
 
-// SORT FUNCTION
+// SORT
 function sortStudents(event) {
   const sortBy = event.target.value;
   sortStudentsBy(sortBy);
   displayList(currentList);
 }
 
+// SORT FUNCTION
 function sortStudentsBy(prop) {
   currentList.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
 }
@@ -184,31 +197,31 @@ function sortStudentsBy(prop) {
 // }
 
 function displayList(students) {
-  //clear the students list
-  document.querySelector("#mainslisttudents").innerHTML = "";
+  // Clear the students list first
+  listInfo.innerHTML = "";
 
-  //make a new list
+  //Make a new list
   students.forEach(displayStudent);
-  displayListDetails(currentList);
+  showList(currentList);
 }
-
+// DISPLAYSTUDENT FUNCTION
 function displayStudent(student, index) {
-  //make a clone
+  //Make a clone
   const template = document.querySelector("#student");
   const clone = template.cloneNode(true).content;
 
-  //set clone data
+  //Set clone info
   clone.querySelector(".firstname").textContent =
     "First name: " + student.firstname;
   clone.querySelector(".lastname").textContent =
     "Last name: " + student.lastname;
   clone.querySelector(".house").textContent = "House name: " + student.house;
 
-  // store the index on the button
+  //  Index on the remove button
   clone.querySelector("[data-action=remove]").dataset.index = index;
 
-  // add uuid as the ID to the remove-button as a data attribute
-  clone.querySelector("[data-id=uuid]").dataset.id = student.id;
+  // Set an id to remove button
+  clone.querySelector("[data-id=remove]").dataset.id = student.id;
 
   let imgTemp = clone.querySelector(".img-template");
   imgTemp.src =
@@ -222,7 +235,9 @@ function displayStudent(student, index) {
     showDetails(student);
   });
 
+  //SHOWDETAILS FUNCTION
   function showDetails(student) {
+    // Set modal info
     if (student.middlename !== "-middlename-") {
       modal.querySelector(".middlename-modal").textContent =
         "Middle name:" + student.middlename;
@@ -245,7 +260,7 @@ function displayStudent(student, index) {
       "House name: " + student.house;
     modal.querySelector(".gender-modal").textContent =
       "Gender: " + student.gender;
-
+    // Students img
     let imgModal = document.querySelector(".img-modal");
     imgModal.src =
       "images/" +
@@ -253,34 +268,8 @@ function displayStudent(student, index) {
       "_" +
       student.firstname.substring(0, 1).toLowerCase() +
       ".png";
-    // 2 students with the same last name or no picture or last name wit a dash
-    let i = 0;
-    // imgModal.addEventListener("error", imgError);
-    // function imgError() {
-    //   if (i == 0) {
-    //     imgModal.src =
-    //       "images/" +
-    //       student.lastname.toLowerCase() +
-    //       "_" +
-    //       student.firstname.toLowerCase() +
-    //       ".png";
-    //     i++;
-    //     // const noImg = document.querySelector(".noImg");
-    //     // noImg.classList.remove("hide");
-    //   } else if (i == 1) {
-    //     let secondLastName = student.lastname.slice(
-    //       student.lastname.indexOf("-") + 1
-    //     );
-    //     imgModal.src =
-    //       "images/" +
-    //       secondLastName.toLowerCase() +
-    //       "_" +
-    //       student.firstname.substring(0, 1).toLowerCase() +
-    //       ".png";
-    //     i++;
-    //   }
-    // }
 
+    // Houses img
     document.querySelector(
       ".house-img-modal"
     ).src = `images/houses/${student.house}.png`;
@@ -294,30 +283,31 @@ function displayStudent(student, index) {
     // console.log(student.house);
 
     modalColors(student.house);
+
+    //Show the modal
     modal.classList.remove("hide");
   }
 
-  //append clone to list
+  // Append clone to list
   document.querySelector("#mainslisttudents").appendChild(clone);
 }
 
-// modal colors
+// Modal colors
 function modalColors(house) {
   root.dataset.colors = house;
 }
 
 //DISPLAYING LIST DETAILS
-function displayListDetails(currentList) {
+function showList(currentList) {
   nonExpelledStudents.textContent = allStudents.length;
   expelledStudents.textContent = expelledList.length;
-  ravenclawStudents.textContent = countStudentsHouse("Ravenclaw");
-  slytherinStudents.textContent = countStudentsHouse("Slytherin");
-  gryffindorStudents.textContent = countStudentsHouse("Gryffindor");
-  hufflepuffStudents.textContent = countStudentsHouse("Hufflepuff");
+  ravenclawStudents.textContent = studentsInHouses("Ravenclaw");
+  slytherinStudents.textContent = studentsInHouses("Slytherin");
+  gryffindorStudents.textContent = studentsInHouses("Gryffindor");
+  hufflepuffStudents.textContent = studentsInHouses("Hufflepuff");
 
-  function countStudentsHouse(house) {
-    // return allStudents.filter(x => x.house === house).length;
-    let group = allStudents.filter(filterBy);
+  function studentsInHouses(house) {
+    const studentsHouse = allStudents.filter(filterBy);
     function filterBy(student) {
       if (student.house === house || house === "all") {
         return true;
@@ -325,7 +315,7 @@ function displayListDetails(currentList) {
         return false;
       }
     }
-    return group.length;
+    return studentsHouse.length;
   }
   console.log(expelledList);
 }
@@ -357,7 +347,7 @@ function expellStudent(event) {
     element.parentElement.addEventListener("animationend", function() {
       element.parentElement.remove();
     });
-    displayListDetails(currentList, expelledList);
+    showList(currentList, expelledList);
   } else if (element.dataset.id === "041097") {
     element.parentElement.classList.add("donttouch");
     element.parentElement.addEventListener("animationend", function() {
