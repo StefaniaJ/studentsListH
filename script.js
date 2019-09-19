@@ -31,8 +31,9 @@ const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
 const slytherinStudents = document.querySelector(".slytherinStudents");
 const listInfo = document.querySelector("#mainslisttudents");
 
+// START FUNCTION
 function start() {
-  console.log("Ready");
+  // console.log("Ready");
 
   // AddEventListener for sort
   document.querySelectorAll("#sort").forEach(Option => {
@@ -43,9 +44,9 @@ function start() {
   document.querySelectorAll("#filter").forEach(option => {
     option.addEventListener("change", filterStudents);
   });
-  // modal.addEventListener("click", clickSomething);
-
+  // AddEventListener for expell a student
   listInfo.addEventListener("click", expellStudent);
+
   //Load JSON data
   loadJSON();
 }
