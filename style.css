@@ -245,3 +245,7 @@ body {
 main {
   grid-area: main;
 }
+
+.img-template {
+  width: 100px;
+}
