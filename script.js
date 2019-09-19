@@ -138,6 +138,7 @@ function filterBy() {
 
 function sortBy() {
   sort = this.value;
+  currentList = allStudents;
   allStudents.sort((a, b) => {
     return a[sort].localeCompare(b[sort]);
   });
