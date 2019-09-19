@@ -66,6 +66,16 @@ button {
   text-align: center;
 }
 
+.show {
+  width: 80%;
+  height: 85%;
+  margin: auto;
+  margin-top: 5%;
+  overflow: scroll;
+  padding: 1em;
+  background-color: brown;
+}
+
 /* /// Close Button /// */
 .close {
   color: #aaaaaa;

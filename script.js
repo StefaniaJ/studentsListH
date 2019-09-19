@@ -30,6 +30,7 @@ const ravenclawStudents = document.querySelector(".ravenclawStudents");
 const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
 const slytherinStudents = document.querySelector(".slytherinStudents");
 const listInfo = document.querySelector("#mainslisttudents");
+const displayExpelledList = document.querySelector("#displayExpelledList");
 
 // START FUNCTION
 function start() {
@@ -48,8 +49,15 @@ function start() {
   // AddEventListener for expell a student
   listInfo.addEventListener("click", expellStudent);
 
+  displayExpelledList.addEventListener("click", seeExpelled);
+
   //Load JSON data
   loadJSON();
+}
+
+function seeExpelled() {
+  displayExpelledList.classList.add("show");
+  displayList(expelledList);
 }
 
 // LOADJSON FUNCTION
@@ -133,6 +141,8 @@ function rebuildList() {
   sortStudentsBy("all");
   displayList(currentList);
 }
+
+// function showExpell() {}
 
 //FILTER
 function filterStudents(event) {
@@ -273,14 +283,6 @@ function displayStudent(student, index) {
     document.querySelector(
       ".house-img-modal"
     ).src = `images/houses/${student.house}.png`;
-
-    // clickedStudent = event.target.parentElement;
-    // const removeBtn = document.querySelector("[data-action=remove]");
-    // removeBtn.dataset.index = index;
-    // removeBtn.dataset.attribute = student.id;
-    // console.log(student.id);
-
-    // console.log(student.house);
 
     modalColors(student.house);
 
