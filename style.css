@@ -144,9 +144,102 @@ button {
   }
 }
 
-.listInfo {
+/* Template */
+
+#mainslisttudents {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
   grid-gap: 1em;
   padding-top: 10px;
+}
+
+#articlestudents {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 400;
+  padding-left: 7.5em;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  height: 220px;
+  width: 325px;
+  padding-top: 25px;
+  background-color: white;
+}
+
+.firstname,
+.lastname {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8;
+  position: absolute;
+  left: 0px;
+  top: 160px;
+}
+
+.btn a {
+  border: 5px solid #d4b13b;
+  padding: 4px;
+}
+.removeBtn {
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  right: 10px;
+  background-image: url(../images/things/magicpot1.png);
+}
+
+#articlestudents.img-templat {
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+body {
+  max-width: 100%;
+  margin: auto;
+  color: #29484b;
+  font-family: sans-serif;
+  background-color: #9839c9;
+}
+#wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template: 1em 1em 1em;
+  grid-template-areas:
+    "title title title"
+    "list list list"
+    "options options options"
+    "main main main";
+  /* "footer footer footer"; */
+}
+
+#title {
+  grid-area: title;
+}
+
+.list {
+  grid-area: list;
+}
+
+.options {
+  grid-area: options;
+}
+
+main {
+  grid-area: main;
 }

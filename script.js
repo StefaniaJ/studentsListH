@@ -32,7 +32,7 @@ let gryffindorStudents = document.querySelector(".gryffindorStudents");
 let ravenclawStudents = document.querySelector(".ravenclawStudents");
 let hufflepuffStudents = document.querySelector(".hufflepuffStudents");
 let slytherinStudents = document.querySelector(".slytherinStudents");
-let listInfo = document.querySelector(".listInfo");
+let listInfo = document.querySelector("#mainslisttudents");
 
 function start() {
   console.log("Ready");
@@ -130,6 +130,9 @@ function prepareStudentInfo(jsonData) {
 // Filter function
 function filterBy() {
   filter = this.value;
+  // currentList = allStudents.filter(students => {
+  //   return true;
+  // });
   displayList(allStudents);
 }
 
@@ -159,7 +162,7 @@ function sortBy() {
 
 function displayList(students) {
   //clear the students list
-  document.querySelector("ol").innerHTML = "";
+  document.querySelector("#mainslisttudents").innerHTML = "";
 
   //make a new list
   students.forEach(displayStudent);
@@ -185,6 +188,14 @@ function displayStudent(student, index) {
 
     // add uuid as the ID to the remove-button as a data attribute
     clone.querySelector("[data-id=uuid]").dataset.id = student.id;
+
+    let imgTemp = clone.querySelector(".img-template");
+    imgTemp.src =
+      "images/" +
+      student.lastname.toLowerCase() +
+      "_" +
+      student.firstname.substring(0, 1).toLowerCase() +
+      ".png";
 
     clone.querySelector(".btn").addEventListener("click", () => {
       showDetails(student);
@@ -214,15 +225,15 @@ function displayStudent(student, index) {
       modal.querySelector(".gender-modal").textContent =
         "Gender: " + student.gender;
 
-      const imgModal = document.querySelector(".img-modal");
+      let imgModal = document.querySelector(".img-modal");
       imgModal.src =
         "images/" +
         student.lastname.toLowerCase() +
         "_" +
         student.firstname.substring(0, 1).toLowerCase() +
         ".png";
-      // // 2 students with the same last name or no picture or last name wit a dash
-      // let i = 0;
+      // 2 students with the same last name or no picture or last name wit a dash
+      let i = 0;
       // imgModal.addEventListener("error", imgError);
       // function imgError() {
       //   if (i == 0) {
@@ -266,7 +277,7 @@ function displayStudent(student, index) {
     }
 
     //append clone to list
-    document.querySelector("ol").appendChild(clone);
+    document.querySelector("#mainslisttudents").appendChild(clone);
   }
 }
 

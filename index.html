@@ -38,21 +38,22 @@
       </select>
       <hr />
       <!-- LIST HERE -->
-      <main>
+      <main id="mainslisttudents">
         <ol class="listInfo"></ol>
       </main>
     </div>
     <!--TEMPLATE -->
     <template id="student">
-      <li>
+      <article id="articlestudents">
+        <img class="img-template" src="" alt="" />
         <h3 class="firstname">First name</h3>
         <h3 class="middlename hide">Middle name</h3>
         <h3 class="nickname hide">Nick name</h3>
         <h3 class="lastname">Last name</h3>
         <p class="house">House</p>
-        <button data-action="remove" data-id="uuid">remove</button>
-        <button class="btn" data-student="">More info</button>
-      </li>
+        <button data-action="remove" data-id="uuid" class="removeBtn"></button>
+        <button class="btn" data-student=""><a>More info</a></button>
+      </article>
     </template>
 
     <!-- MODAL -->
