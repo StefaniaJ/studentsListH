@@ -306,6 +306,7 @@ function showList(currentList) {
   gryffindorStudents.textContent = studentsInHouses("Gryffindor");
   hufflepuffStudents.textContent = studentsInHouses("Hufflepuff");
 
+  //STUDENTS IN HOUSES FUNCTION  (made with help :D)
   function studentsInHouses(house) {
     const studentsHouse = allStudents.filter(filterBy);
     function filterBy(student) {
@@ -317,14 +318,13 @@ function showList(currentList) {
     }
     return studentsHouse.length;
   }
-  console.log(expelledList);
 }
-//EXPELLING STUDENTS
+//EXPELLSTUDENT FUNCTION
 function expellStudent(event) {
-  let element = event.target;
+  const element = event.target;
   if (element.dataset.action === "remove" && element.dataset.id !== "041097") {
     const clickedId = element.dataset.id;
-
+    // (made with help)
     function findById(arr, index) {
       function findId(student) {
         if (index === student.id) {
@@ -347,6 +347,7 @@ function expellStudent(event) {
     element.parentElement.addEventListener("animationend", function() {
       element.parentElement.remove();
     });
+
     showList(currentList, expelledList);
   } else if (element.dataset.id === "041097") {
     element.parentElement.classList.add("donttouch");
@@ -356,7 +357,7 @@ function expellStudent(event) {
   }
 }
 
-// Our prototpype Student
+//Student Prototpype
 const Student = {
   firstname: "-firstname-",
   lastname: "-lastname-",
