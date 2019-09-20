@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", start);
 
 //LINKS
 let students = "http://petlatkea.dk/2019/hogwartsdata/students.json";
-// let family = 'http://petlatkea.dk/2019/hogwartsdata/families.json';
+let familyJSON = "http://petlatkea.dk/2019/hogwartsdata/families.json";
 
 // Todo: EMPTY ARREYS
 let allStudents = [];
@@ -20,15 +20,7 @@ let sort;
 // GLOBAL VARIABLES
 const root = document.documentElement;
 const modal = document.querySelector(".modal-bg");
-const article = document.querySelector(".modal-content");
 const close = document.querySelector(".close");
-
-// const nonExpelledStudents = document.querySelector(".nonExpelledStudents");
-// const expelledStudents = document.querySelector(".expelledStudents");
-// const gryffindorStudents = document.querySelector(".gryffindorStudents");
-// const ravenclawStudents = document.querySelector(".ravenclawStudents");
-// const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
-// const slytherinStudents = document.querySelector(".slytherinStudents");
 const listInfo = document.querySelector("#mainslisttudents");
 const displayExpelledList = document.querySelector("#displayExpelledList");
 
@@ -146,12 +138,8 @@ function rebuildList() {
 //FILTER
 function filterStudents(event) {
   const filterBy = event.target.value;
-  // if (filterBy === "expelled") {
-  //   displayList(expelledList);
-  // } else {
   filterStudentsBy(filterBy);
   displayList(currentList);
-  // }
 }
 
 //FILTER FUNCTION
@@ -367,13 +355,14 @@ const Student = {
   gender: "-gender-",
   id: "-id-"
 };
+//Fanily blood status prototpype
+const familyStatus = {
+  pureBloodStatus: "-pure status-",
+  halfBloodStatus: "-half status-"
+};
 
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
-// expell -
-//   close.addEventListener("click", () =>
-//     document.querySelector(".expell-bg").classList.add("hide")
-//   );
 
 //HOW TO CREATE UUID
 // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
@@ -385,3 +374,5 @@ function uuidv4() {
   });
 }
 // console.log(uuidv4());
+
+// BLOOD STATUS
