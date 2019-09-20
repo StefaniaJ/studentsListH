@@ -20,6 +20,19 @@ html[data-colors="Slytherin"] {
   --color-text: white;
   --color-bg: green;
 }
+#title,
+.list,
+.options {
+  color: white;
+}
+
+select {
+  background-color: black;
+  color: white;
+  padding: 8px 10px;
+  border: 5px solid #d4b13b;
+  cursor: pointer;
+}
 
 /* ////////  Modal ///////*/
 
@@ -70,38 +83,16 @@ html[data-colors="Slytherin"] {
 
 /* EXPELLe*/
 
-.expell-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  overflow: auto;
-}
-.expell-close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 30px;
-  font-weight: bold;
-  margin-right: -6px;
-  margin-top: 17px;
+#displayExpelledList {
+  background-color: black;
+  color: white;
+  padding: 8px 10px;
+  border: 5px solid #d4b13b;
+  cursor: pointer;
 }
 .expell-close:hover {
   color: #000;
   cursor: pointer;
-}
-
-.expell-content {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  width: 80%;
-  height: 85%;
-  margin: auto;
-  margin-top: 5%;
-  overflow: scroll;
-  padding: 1em;
-  text-align: center;
 }
 
 /* .remove {
@@ -169,25 +160,16 @@ html[data-colors="Slytherin"] {
 }
 
 #articlestudents {
-  text-align: left;
+  text-align: center;
   font-size: 12px;
-  font-weight: 400;
-  /* padding-left: 4.5em; */
   padding: 5px;
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: auto;
-  height: 220px;
+  height: 240px;
   width: 360px;
-  padding-top: 25px;
+  padding-top: 20px;
   background-color: white;
-}
-
-.firstname,
-.lastname {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .btn {
@@ -200,7 +182,7 @@ html[data-colors="Slytherin"] {
   opacity: 0.8;
   position: absolute;
   left: 0px;
-  top: 100px;
+  bottom: 0;
 }
 
 .btn a {
@@ -210,14 +192,14 @@ html[data-colors="Slytherin"] {
 .removeBtn {
   border: none;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: absolute;
-  right: 35px;
-  bottom: 12px;
+  right: 23px;
+  bottom: 47px;
   background-image: url(../images/things/magicpot1.png);
 }
 
