@@ -1,88 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body id="wrapper">
-    <!-- TITLE -->
-    <h1 id="title">List of students enrolled at Hogwarts in 1991</h1>
-    <div class="list">
-      <p>Expelled students: <span class="expelledStudents"></span></p>
-      <p>Non expelled students: <span class="nonExpelledStudents"></span></p>
-      <p>Gryffindor: <span class="gryffindorStudents"></span></p>
-      <p>Ravenclaw: <span class="ravenclawStudents"></span></p>
-      <p>Hufflepuff: <span class="hufflepuffStudents"></span></p>
-      <p>Slytherin: <span class="slytherinStudents"></span></p>
-    </div>
-    <div class="options">
-      <!-- SORT OPTION -->
-      <label for="sort" class="sort">Sort by:</label>
-      <select name="sort" id="sort">
-        <option value="all">All</option>
-        <option value="firstname">First name</option>
-        <option value="lastname">Last name</option>
-        <option value="house">House</option>
-      </select>
-      <!-- FILTER OPTION -->
-      <label for="filter" class="filter">Filter by:</label>
-      <select name="filter" id="filter">
-        <option value="all">All</option>
-        <option value="Gryffindor">Gryffindor</option>
-        <option value="Ravenclaw">Ravenclaw</option>
-        <option value="Hufflepuff">Hufflepuff</option>
-        <option value="Slytherin">Slytherin</option>
-      </select>
 
-      <button id="displayExpelledList">Expell list here:</button>
-      <hr />
-    </div>
-    <!-- LIST HERE -->
-    <main id="mainslisttudents">
-      <ol class="listInfo"></ol>
-    </main>
-    <!--TEMPLATE -->
-    <template id="student">
-      <article id="articlestudents">
-        <img class="img-template" src="" alt="" />
-        <h3 class="firstname">First name</h3>
-        <h3 class="middlename hide">Middle name</h3>
-        <h3 class="nickname hide">Nick name</h3>
-        <h3 class="lastname">Last name</h3>
-        <p class="house">House</p>
-        <button
-          data-action="remove"
-          data-id="remove"
-          class="removeBtn"
-        ></button>
-        <button class="btn" data-student=""><a>More info</a></button>
-      </article>
-    </template>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <!-- MODAL -->
-    <!--TODO: add more option !! -->
-    <div class="modal-bg hide modal">
-      <article class="modal-content">
-        <span class="close">&times;</span>
-        <img class="img-modal" src="" alt="" />
-        <h3 class="firstname-modal">First name</h3>
-        <h3 class="middlename-modal">Middle name</h3>
-        <h3 class="nickname-modal">Nick name</h3>
-        <h3 class="lastname-modal">Last name</h3>
-        <p class="house-modal">House</p>
-        <p class="blood-modal">Blood status:</p>
-        <p class="prefect-modal">Prefect status:</p>
-        <p class="gender-modal">Gender:</p>
-        <img class="house-img-modal" src="" alt="" />
-        <!-- <img class="noImg hide" src="images/no-image-available.png";"  /> -->
+<body id="wrapper">
+  <!-- TITLE -->
+  <h1 id="title">List of students enrolled at Hogwarts in 1991</h1>
+  <div class="list">
+    <p>Expelled students: <span class="expelledStudents"></span></p>
+    <p>Non expelled students: <span class="nonExpelledStudents"></span></p>
+    <p>Gryffindor: <span class="gryffindorStudents"></span></p>
+    <p>Ravenclaw: <span class="ravenclawStudents"></span></p>
+    <p>Hufflepuff: <span class="hufflepuffStudents"></span></p>
+    <p>Slytherin: <span class="slytherinStudents"></span></p>
+  </div>
+  <div class="options">
+    <!-- SORT OPTION -->
+    <label for="sort" class="sort">Sort by:</label>
+    <select name="sort" id="sort">
+      <option value="all">All</option>
+      <option value="firstname">First name</option>
+      <option value="lastname">Last name</option>
+      <option value="house">House</option>
+    </select>
+    <!-- FILTER OPTION -->
+    <label for="filter" class="filter">Filter by:</label>
+    <select name="filter" id="filter">
+      <option value="all">All</option>
+      <option value="Gryffindor">Gryffindor</option>
+      <option value="Ravenclaw">Ravenclaw</option>
+      <option value="Hufflepuff">Hufflepuff</option>
+      <option value="Slytherin">Slytherin</option>
+    </select>
 
-        <!-- <button data-action="remove">remove</button> -->
-      </article>
-    </div>
+    <button id="displayExpelledList">Expell list here:</button>
+    <hr />
+  </div>
+  <!-- LIST HERE -->
+  <main id="mainslisttudents">
+    <ol class="listInfo"></ol>
+  </main>
+  <!--TEMPLATE -->
+  <template id="student">
+    <article id="articlestudents">
+      <img class="img-template" src="" alt="" />
+      <h3>First name: <span data-field="firstname"></span></h3>
+      <h3>Last name: <span data-field="lastname"></span></h3>
+      <p>House: <span data-field="house"></span></p>
+      <button data-action="remove" data-id="remove" class="removeBtn"></button>
+      <button class="btn" data-student=""><a>More info</a></button>
+    </article>
+  </template>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- MODAL -->
+  <!--TODO: add more option !! -->
+  <div class="modal-bg hide modal">
+    <article class="modal-content">
+      <span class="close">&times;</span>
+      <img class="img-modal" src="" alt="" />
+      <h3>First name: <span data-field="firstname"></span></h3>
+      <h3 class="middlename">Middle name: <span data-field="middlename"></span></h3>
+      <h3 class="nickname">Nick name: <span data-field="nickname"></span></h3>
+      <h3>Last name: <span data-field="lastname"></span></h3>
+      <p>House: <span data-field="house"></span></p>
+      <p>Gender: <span data-field="gender"></span></p>
+      <p>Blood status: <span data-field="blood"></span></p>
+      <p>Prefect status: <span data-field="prefect"></span></p>
+      <img class="house-img-modal" src="" alt="" />
+
+      <!-- <button data-action="remove">remove</button> -->
+    </article>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>

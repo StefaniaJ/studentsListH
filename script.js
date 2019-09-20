@@ -159,6 +159,7 @@ function filterStudents(event) {
 //FILTER FUNCTION
 function filterStudentsBy(filterBy) {
   currentList = allStudents.filter(filterByHouse);
+
   function filterByHouse(student) {
     if (student.house === filterBy || filterBy === "all") {
       return true;
@@ -178,6 +179,9 @@ function sortStudents(event) {
 
 // SORT FUNCTION
 function sortStudentsBy(prop) {
+  // currentList = allStudents.sort((a, b) => {
+  //   return a[prop].localeCompare(b[prop]);
+  // });
   currentList.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
 }
 
@@ -222,11 +226,10 @@ function displayStudent(student, index) {
   const clone = template.cloneNode(true).content;
 
   //Set clone info
-  clone.querySelector(".firstname").textContent =
-    "First name: " + student.firstname;
-  clone.querySelector(".lastname").textContent =
-    "Last name: " + student.lastname;
-  clone.querySelector(".house").textContent = "House name: " + student.house;
+  clone.querySelectorAll("[data-field]").forEach(field => {
+    const prop = field.dataset.field;
+    field.textContent = student[prop];
+  });
 
   //  Index on the remove button
   clone.querySelector("[data-action=remove]").dataset.index = index;
@@ -234,8 +237,7 @@ function displayStudent(student, index) {
   // Set an id to remove button
   clone.querySelector("[data-id=remove]").dataset.id = student.id;
 
-  let imgTemp = clone.querySelector(".img-template");
-  imgTemp.src =
+  clone.querySelector(".img-template").src =
     "images/" +
     student.lastname.toLowerCase() +
     "_" +
@@ -249,29 +251,17 @@ function displayStudent(student, index) {
   //SHOWDETAILS FUNCTION
   function showDetails(student) {
     // Set modal info
-    if (student.middlename !== "-middlename-") {
-      modal.querySelector(".middlename-modal").textContent =
-        "Middle name:" + student.middlename;
-    } else {
-      modal.querySelector(".middlename-modal").textContent = "";
+    modal.querySelectorAll("[data-field]").forEach(field => {
+      const prop = field.dataset.field;
+      field.textContent = student[prop];
+    });
+
+    if (student.middlename == "-middlename-") {
+      modal.querySelector(".middlename").classList.add("hide");
+    } else if (student.nickname == "-nickname-") {
+      modal.querySelector(".nickname").classList.add("hide");
     }
 
-    if (student.nickname !== "-nickname-") {
-      modal.querySelector(".nickname-modal").textContent =
-        "Nick name:" + student.nickname;
-    } else {
-      modal.querySelector(".nickname-modal").textContent = "";
-    }
-
-    modal.querySelector(".firstname-modal").textContent =
-      "First name: " + student.firstname;
-    modal.querySelector(".lastname-modal").textContent =
-      "Last name: " + student.lastname;
-    modal.querySelector(".house-modal").textContent =
-      "House name: " + student.house;
-    modal.querySelector(".gender-modal").textContent =
-      "Gender: " + student.gender;
-    // Students img
     let imgModal = document.querySelector(".img-modal");
     imgModal.src =
       "images/" +
@@ -285,6 +275,7 @@ function displayStudent(student, index) {
       ".house-img-modal"
     ).src = `images/houses/${student.house}.png`;
 
+    //Set the color for each house
     modalColors(student.house);
 
     //Show the modal
@@ -312,6 +303,7 @@ function showList(currentList) {
   //STUDENTS IN HOUSES FUNCTION  (made with help :D)
   function studentsInHouses(house) {
     const studentsHouse = allStudents.filter(filterBy);
+
     function filterBy(student) {
       if (student.house === house || house === "all") {
         return true;
