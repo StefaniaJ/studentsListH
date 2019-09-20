@@ -266,8 +266,30 @@ function displayStudent(student, index) {
 
     //Show the modal
     modal.classList.remove("hide");
-  }
 
+    // Call loadFamilyBloodStatus Function to load the json
+    loadFamilyBloodStatus();
+
+    // loadFamilyBloodStatus FUNCTION
+    function loadFamilyBloodStatus() {
+      fetch(familyJSON)
+        .then(response => response.json())
+        .then(familyBloodStatus => {
+          checkFamilyBloodStatus(familyBloodStatus);
+        });
+    }
+    //  Check family blood status FUNCTION
+    function checkFamilyBloodStatus(familyBloodStatus) {
+      const bloodInfo = document.querySelector("[data-field=blood]");
+      if (familyBloodStatus.half.includes(`${student.lastname}`)) {
+        bloodInfo.textContent = "halfblood";
+      } else if (familyBloodStatus.pure.includes(`${student.lastname}`)) {
+        bloodInfo.textContent = "pureblood";
+      } else {
+        bloodInfo.textContent = "non-magical parents";
+      }
+    }
+  }
   // Append clone to list
   document.querySelector("#mainslisttudents").appendChild(clone);
 }
@@ -355,11 +377,11 @@ const Student = {
   gender: "-gender-",
   id: "-id-"
 };
-//Fanily blood status prototpype
-const familyStatus = {
-  pureBloodStatus: "-pure status-",
-  halfBloodStatus: "-half status-"
-};
+// //Family blood status prototpype
+// const familyStatus = {
+//   pureBloodStatus: "-pure blood status-",
+//   halfBloodStatus: "-half blood status-"
+// };
 
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
@@ -374,5 +396,3 @@ function uuidv4() {
   });
 }
 // console.log(uuidv4());
-
-// BLOOD STATUS
