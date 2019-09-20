@@ -23,12 +23,12 @@ const modal = document.querySelector(".modal-bg");
 const article = document.querySelector(".modal-content");
 const close = document.querySelector(".close");
 
-const nonExpelledStudents = document.querySelector(".nonExpelledStudents");
-const expelledStudents = document.querySelector(".expelledStudents");
-const gryffindorStudents = document.querySelector(".gryffindorStudents");
-const ravenclawStudents = document.querySelector(".ravenclawStudents");
-const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
-const slytherinStudents = document.querySelector(".slytherinStudents");
+// const nonExpelledStudents = document.querySelector(".nonExpelledStudents");
+// const expelledStudents = document.querySelector(".expelledStudents");
+// const gryffindorStudents = document.querySelector(".gryffindorStudents");
+// const ravenclawStudents = document.querySelector(".ravenclawStudents");
+// const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
+// const slytherinStudents = document.querySelector(".slytherinStudents");
 const listInfo = document.querySelector("#mainslisttudents");
 const displayExpelledList = document.querySelector("#displayExpelledList");
 
@@ -142,8 +142,6 @@ function rebuildList() {
   sortStudentsBy("all");
   displayList(currentList);
 }
-
-// function showExpell() {}
 
 //FILTER
 function filterStudents(event) {
@@ -293,6 +291,13 @@ function modalColors(house) {
 
 //DISPLAYING LIST DETAILS
 function showList(currentList) {
+  const nonExpelledStudents = document.querySelector(".nonExpelledStudents");
+  const expelledStudents = document.querySelector(".expelledStudents");
+  const gryffindorStudents = document.querySelector(".gryffindorStudents");
+  const ravenclawStudents = document.querySelector(".ravenclawStudents");
+  const hufflepuffStudents = document.querySelector(".hufflepuffStudents");
+  const slytherinStudents = document.querySelector(".slytherinStudents");
+
   nonExpelledStudents.textContent = allStudents.length;
   expelledStudents.textContent = expelledList.length;
   ravenclawStudents.textContent = studentsInHouses("Ravenclaw");
