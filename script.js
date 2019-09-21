@@ -90,7 +90,7 @@ function prepareStudentInfo(jsonData) {
     student.expelled = false;
 
     //Prefect status
-    student.prefect = false;
+    // student.prefect = false;
 
     //Edit the name
     let info = jsonObject.fullname.trim();
@@ -131,7 +131,7 @@ function prepareStudentInfo(jsonData) {
   newStudent.gender = "girl";
   newStudent.id = "041097";
   newStudent.expelled = false;
-  newStudent.prefect = false;
+  // newStudent.prefect = false;
   allStudents.push(newStudent);
 
   //Rebuild the list
@@ -447,7 +447,7 @@ const Student = {
   gender: "-gender-",
   id: "-id-",
   expelled: false,
-  prefect: "-prefectStatus-"
+  prefect: ""
 };
 
 //Add global eventListeners
