@@ -1,6 +1,7 @@
 html {
   text-transform: uppercase;
 }
+
 html[data-colors="Gryffindor"] {
   --color-text: white;
   --color-bg: red;
@@ -20,6 +21,7 @@ html[data-colors="Slytherin"] {
   --color-text: white;
   --color-bg: green;
 }
+
 #title,
 .list,
 .options {
@@ -89,7 +91,11 @@ select {
   padding: 8px 10px;
   border: 5px solid #d4b13b;
   cursor: pointer;
+  width: 120px;
+  text-align: left;
+  padding-left: 15px;
 }
+
 .expell-close:hover {
   color: #000;
   cursor: pointer;
@@ -189,6 +195,7 @@ select {
   border: 5px solid #d4b13b;
   padding: 4px;
 }
+
 .removeBtn {
   border: none;
   cursor: pointer;
@@ -215,6 +222,7 @@ body {
   font-family: sans-serif;
   background-color: #9839c9;
 }
+
 #wrapper {
   min-height: 100vh;
   display: grid;
@@ -229,6 +237,7 @@ body {
 
 #title {
   grid-area: title;
+  text-align: center;
 }
 
 .list {
