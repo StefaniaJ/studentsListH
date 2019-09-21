@@ -1,7 +1,13 @@
+/* /////// Overall layout /////// */
+* {
+  box-sizing: border-box;
+}
+
 html {
   text-transform: uppercase;
 }
 
+/* MODAL COLORS */
 html[data-colors="Gryffindor"] {
   --color-text: white;
   --color-bg: red;
@@ -22,19 +28,220 @@ html[data-colors="Slytherin"] {
   --color-bg: green;
 }
 
+
+body {
+  max-width: 100%;
+  margin: auto;
+  color: #29484b;
+  font-family: sans-serif;
+  background-color: #9839c9;
+}
+
+#wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template: 1em 1em 1em;
+  grid-template-areas:
+    "title title title"
+    "list list list"
+    "options options options"
+    "main main main";
+  /* "footer footer footer"; */
+}
+
+#title {
+  grid-area: title;
+  text-align: center;
+}
+
+.list {
+  grid-area: list;
+  text-align: center;
+}
+
+.options {
+  grid-area: options;
+  text-align: center;
+}
+
+main {
+  grid-area: main;
+}
+
+.img-template,
+.img-modal {
+  width: 100px;
+}
+
+/* TEXT */
+
 #title,
 .list,
 .options {
   color: white;
 }
 
+/* SORT, FILTER */
 select {
   background-color: black;
   color: white;
   padding: 8px 10px;
   border: 5px solid #d4b13b;
   cursor: pointer;
+  margin-right: 95px;
+  justify-content: space-between;
 }
+
+/* EXPELE list btn*/
+
+#displayExpelledList {
+  background-color: black;
+  color: white;
+  padding: 8px 10px;
+  border: 5px solid #d4b13b;
+  cursor: pointer;
+  width: 120px;
+  text-align: left;
+  padding-left: 15px;
+}
+
+
+
+/* Template */
+
+#mainslisttudents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+  grid-gap: 1em;
+  padding-top: 10px;
+}
+
+#articlestudents {
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  height: 250px;
+  width: 360px;
+  padding-top: 10px;
+  background-color: white;
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8;
+  position: absolute;
+  left: 0px;
+  bottom: 0;
+
+}
+
+.btn a {
+  border: 5px solid #d4b13b;
+  padding: 4px;
+}
+
+.removeBtn {
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  right: 23px;
+  bottom: 47px;
+  background-image: url(../images/things/magic-wandfinal.png);
+  background-color: transparent;
+}
+
+.removeBtn:hover {
+  animation: glowing 0.5s infinite alternate;
+}
+
+@keyframes glowing {
+  to {
+    filter: drop-shadow(5px 5px 7px black);
+  }
+}
+
+
+.remove {
+  animation: remove 2s forwards;
+}
+
+@keyframes remove {
+  0% {
+    bottom: 20px;
+    left: 600px;
+  }
+
+  50% {
+    transform: translateY(-100px);
+    animation-timing-function: cubic-bezier(0.23, 0.66, 0.77, 0.57);
+  }
+
+  100% {
+    bottom: 250px;
+    left: 500px;
+    background-size: 1px;
+  }
+}
+
+.donttouch {
+  color: pink;
+  animation: donttouch 2s forwards;
+}
+
+@keyframes donttouch {
+  0% {
+    bottom: 20px;
+    left: 600px;
+  }
+
+  50% {
+    transform: translateY(-100px);
+    animation-timing-function: cubic-bezier(0.23, 0.66, 0.77, 0.57);
+  }
+
+  100% {
+    bottom: 250px;
+    left: 500px;
+    background-size: 1px;
+  }
+}
+
+
+
+.prefectBtn {
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/things/prefectfinal.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-color: white;
+  left: 23px;
+  bottom: 47px;
+}
+
+#articlestudents.img-templat {
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+
 
 /* ////////  Modal ///////*/
 
@@ -83,23 +290,10 @@ select {
   width: 100px;
 }
 
-/* EXPELLe*/
 
-#displayExpelledList {
-  background-color: black;
-  color: white;
-  padding: 8px 10px;
-  border: 5px solid #d4b13b;
-  cursor: pointer;
-  width: 120px;
-  text-align: left;
-  padding-left: 15px;
-}
 
-.expell-close:hover {
-  color: #000;
-  cursor: pointer;
-}
+
+
 
 /* .remove {
   animation: zoomIn 3s forwards;
@@ -110,149 +304,3 @@ select {
     transform: scale(100);
   }
 } */
-
-.remove {
-  animation: remove 2s forwards;
-}
-
-@keyframes remove {
-  0% {
-    bottom: 20px;
-    left: 600px;
-  }
-
-  50% {
-    transform: translateY(-100px);
-    animation-timing-function: cubic-bezier(0.23, 0.66, 0.77, 0.57);
-  }
-
-  100% {
-    bottom: 250px;
-    left: 500px;
-    background-size: 1px;
-  }
-}
-
-.donttouch {
-  color: pink;
-  animation: donttouch 2s forwards;
-}
-
-@keyframes donttouch {
-  0% {
-    bottom: 20px;
-    left: 600px;
-  }
-
-  50% {
-    transform: translateY(-100px);
-    animation-timing-function: cubic-bezier(0.23, 0.66, 0.77, 0.57);
-  }
-
-  100% {
-    bottom: 250px;
-    left: 500px;
-    background-size: 1px;
-  }
-}
-
-/* Template */
-
-#mainslisttudents {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-  grid-gap: 1em;
-  padding-top: 10px;
-}
-
-#articlestudents {
-  text-align: center;
-  font-size: 12px;
-  padding: 5px;
-  position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: auto;
-  height: 240px;
-  width: 360px;
-  padding-top: 20px;
-  background-color: white;
-}
-
-.btn {
-  background-color: black;
-  color: white;
-  padding: 8px 10px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.8;
-  position: absolute;
-  left: 0px;
-  bottom: 0;
-}
-
-.btn a {
-  border: 5px solid #d4b13b;
-  padding: 4px;
-}
-
-.removeBtn {
-  border: none;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: absolute;
-  right: 23px;
-  bottom: 47px;
-  background-image: url(../images/things/magicpot1.png);
-}
-
-#articlestudents.img-templat {
-  margin: 0 auto;
-  margin-top: 30px;
-}
-
-body {
-  max-width: 100%;
-  margin: auto;
-  color: #29484b;
-  font-family: sans-serif;
-  background-color: #9839c9;
-}
-
-#wrapper {
-  min-height: 100vh;
-  display: grid;
-  grid-template: 1em 1em 1em;
-  grid-template-areas:
-    "title title title"
-    "list list list"
-    "options options options"
-    "main main main";
-  /* "footer footer footer"; */
-}
-
-#title {
-  grid-area: title;
-  text-align: center;
-}
-
-.list {
-  grid-area: list;
-}
-
-.options {
-  grid-area: options;
-}
-
-main {
-  grid-area: main;
-}
-
-.img-template,
-.img-modal {
-  width: 100px;
-}

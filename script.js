@@ -377,11 +377,6 @@ const Student = {
   gender: "-gender-",
   id: "-id-"
 };
-// //Family blood status prototpype
-// const familyStatus = {
-//   pureBloodStatus: "-pure blood status-",
-//   halfBloodStatus: "-half blood status-"
-// };
 
 //Add global eventListeners
 close.addEventListener("click", () => modal.classList.add("hide"));
