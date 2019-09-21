@@ -174,8 +174,8 @@ function sortStudents(event) {
 
 // SORT FUNCTION
 function sortStudentsBy(sortBy) {
+  //if sortBy is not all, sort by another option
   if (sortBy != "all") {
-    // sort by chosen option
     currentList.sort((a, b) => {
       return a[sortBy].localeCompare(b[sortBy]);
     });
