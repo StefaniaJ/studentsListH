@@ -10,6 +10,7 @@ let familyJSON = "http://petlatkea.dk/2019/hogwartsdata/families.json";
 let allStudents = [];
 let currentList = [];
 let expelledList = [];
+let prefectList = [];
 
 // Set the filter
 let filter = "all";
@@ -85,6 +86,12 @@ function prepareStudentInfo(jsonData) {
     //Fix the id for every students students
     student.id = uuidv4();
 
+    //Expelled status
+    student.expelled = false;
+
+    //Prefect status
+    student.prefect = false;
+
     //Edit the name
     let info = jsonObject.fullname.trim();
     student.firstname = info.split(" ")[0];
@@ -123,6 +130,8 @@ function prepareStudentInfo(jsonData) {
   newStudent.house = "Gryffindor";
   newStudent.gender = "girl";
   newStudent.id = "041097";
+  newStudent.expelled = false;
+  newStudent.prefect = false;
   allStudents.push(newStudent);
 
   //Rebuild the list
@@ -222,6 +231,10 @@ function displayStudent(student, index) {
 
   // Set an id to remove button
   clone.querySelector("[data-id=remove]").dataset.id = student.id;
+
+  const prefectTemp = clone.querySelector("[data-field=prefect]");
+  prefectTemp.dataset.id = student.id;
+  prefectTemp.addEventListener("click", addPrefectStatus);
 
   clone.querySelector(".img-template").src =
     "images/" +
@@ -375,6 +388,55 @@ function expellStudent(event) {
   }
 }
 
+//MAKE PREFECT FUNCTION
+function addPrefectStatus(event) {
+  let element = event.target;
+  const clickedId = element.dataset.id;
+
+  function findById(arr, index) {
+    function findId(student) {
+      if (index === student.id) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return arr.findIndex(findId);
+  }
+  const listId = findById(allStudents, clickedId);
+  const currentListId = findById(currentList, clickedId);
+  const prefectId = findById(prefectList, clickedId);
+  const studentHouse = allStudents[listId].house;
+  let counter = 0;
+  let currentPrefect = [];
+
+  for (let i = 0; i < prefectList.length; i++) {
+    if (studentHouse == prefectList[i].house) {
+      counter++;
+      currentPrefect.push(prefectList[i]);
+    }
+  }
+
+  if (
+    allStudents[listId].prefect == true ||
+    currentList[currentListId].prefect == true
+  ) {
+    allStudents[listId].prefect = false;
+    currentList[currentListId].prefect = false;
+    prefectList.splice(prefectId, 1);
+    element.classList.remove("prefectActiv");
+  } else if (counter < 2) {
+    allStudents[listId].prefect = true;
+    currentList[currentListId].prefect = true;
+    prefectList.push(allStudents[listId]);
+    element.classList.add("prefectActiv");
+  } else {
+    alert(
+      `There are already two prefects in the same house! First, revoke the prefect status from a student from a house when you want to add another one. The current prefects' students are: ${currentPrefect[0].firstname} and ${currentPrefect[1].firstname}!`
+    );
+  }
+}
+
 //Student Prototpype
 const Student = {
   firstname: "-firstname-",
@@ -384,7 +446,8 @@ const Student = {
   house: "-house-",
   gender: "-gender-",
   id: "-id-",
-  expelled: false
+  expelled: false,
+  prefect: "-prefectStatus-"
 };
 
 //Add global eventListeners

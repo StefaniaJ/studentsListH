@@ -231,7 +231,7 @@ select {
   background-position: center;
   background-size: cover;
   position: absolute;
-  background-color: white;
+  background-color: transparent;
   left: 23px;
   bottom: 47px;
 }
@@ -241,6 +241,20 @@ select {
   margin-top: 30px;
 }
 
+.prefectActiv {
+
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/things/prefect-activ.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-color: transparent;
+  left: 23px;
+  bottom: 47px;
+}
 
 
 /* ////////  Modal ///////*/
