@@ -173,11 +173,14 @@ function sortStudents(event) {
 }
 
 // SORT FUNCTION
-function sortStudentsBy(prop) {
-  // currentList = allStudents.sort((a, b) => {
-  //   return a[prop].localeCompare(b[prop]);
-  // });
-  currentList.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
+function sortStudentsBy(sortBy) {
+  if (sortBy != "all") {
+    // sort by chosen option
+    currentList.sort((a, b) => {
+      return a[sortBy].localeCompare(b[sortBy]);
+    });
+  }
+  displayList(currentList);
 }
 
 // function sortBy() {
