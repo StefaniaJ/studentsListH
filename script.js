@@ -248,6 +248,11 @@ function displayStudent(student, index) {
       modal.querySelector(".nickname").classList.add("hide");
     }
 
+    if (student.expelled) {
+      document.querySelector("[data-field=expell]").innerHTML =
+        "STUDENT EXPELLED";
+    }
+
     let imgModal = document.querySelector(".img-modal");
     imgModal.src =
       "images/" +
@@ -286,7 +291,7 @@ function displayStudent(student, index) {
       } else if (familyBloodStatus.pure.includes(`${student.lastname}`)) {
         bloodInfo.textContent = "pureblood";
       } else {
-        bloodInfo.textContent = "non-magical parents";
+        bloodInfo.textContent = "not pure";
       }
     }
   }
@@ -349,6 +354,9 @@ function expellStudent(event) {
     let currentListId = findById(currentList, clickedId);
 
     expelledList.push(currentList[currentListId]);
+    expelledList.forEach(student => {
+      student.expelled = true;
+    });
 
     currentList.splice(currentListId, 1);
     allStudents.splice(listId, 1);
@@ -375,7 +383,8 @@ const Student = {
   nickname: "-nickname-",
   house: "-house-",
   gender: "-gender-",
-  id: "-id-"
+  id: "-id-",
+  expelled: false
 };
 
 //Add global eventListeners
