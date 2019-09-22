@@ -92,6 +92,9 @@ function prepareStudentInfo(jsonData) {
     //Prefect status
     // student.prefect = false;
 
+    //Squad status
+    student.squad = "Student added ";
+
     //Edit the name
     let info = jsonObject.fullname.trim();
     student.firstname = info.split(" ")[0];
@@ -132,6 +135,7 @@ function prepareStudentInfo(jsonData) {
   newStudent.id = "041097";
   newStudent.expelled = false;
   // newStudent.prefect = false;
+  newStudent.squad = "Student added";
   allStudents.push(newStudent);
 
   //Rebuild the list
@@ -282,6 +286,9 @@ function displayStudent(student, index) {
       document.querySelector(".prefect-modal").classList.remove("prefectActiv");
       document.querySelector(".prefect-modal").classList.remove("glow");
     }
+
+    clone.querySelector("[data-action=squad]")= student.id;
+    clone.querySelector("[data-action=squad]").addEventListener("click", addSquadStatus)
 
     let imgModal = document.querySelector(".img-modal");
     imgModal.src =
@@ -464,7 +471,8 @@ const Student = {
   gender: "-gender-",
   id: "-id-",
   expelled: false,
-  prefect: ""
+  prefect: "",
+  squad: "-squad-"
 };
 
 //Add global eventListeners
