@@ -158,7 +158,7 @@ select {
   position: absolute;
   right: 23px;
   bottom: 46px;
-  background-image: url(../images/things/magic-wandfinal.png);
+  background-image: url(../images/houses/magic-wandfinal.png);
   background-color: transparent;
 }
 
@@ -222,7 +222,7 @@ select {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  background-image: url(../images/things/prefectfinal.png);
+  background-image: url(../images/houses/prefectfinal.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -246,7 +246,7 @@ select {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  background-image: url(../images/things/prefect-activ.png);
+  background-image: url(../images/houses/prefect-activ.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -326,7 +326,7 @@ select {
   cursor: pointer;
   width: 60px;
   height: 60px;
-  background-image: url(../images/things/squad3.jpg);
+  background-image: url(../images/houses/squad3.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

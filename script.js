@@ -187,31 +187,6 @@ function sortStudentsBy(sortBy) {
   displayList(currentList);
 }
 
-// function sortBy() {
-//   sort = this.value;
-
-//   // currentList = allStudents;
-//   allStudents.sort((a, b) => {
-//     return a[sort].localeCompare(b[sort]);
-//   });
-
-// // if (sort == "firstname") {
-// //   allStudents.sort((a, b) => {
-// //     return a[sort].localeCompare(b[sort]);
-// //   });
-// // } else if (sort == "lastname") {
-// //   allStudents.sort((a, b) => {
-// //     return a.lastname.localeCompare(b.lastname);
-// //   });
-// // } else if (sort == "house") {
-// //   allStudents.sort((a, b) => {
-// //     return a.house.localeCompare(b.house);
-// //   });
-// // } else if (sort == "all") {
-// //   start();
-// // }
-//   displayList(allStudents);
-// }
 
 function displayList(students) {
   // Clear the students list first
