@@ -343,3 +343,24 @@ select {
     transform: scale(100);
   }
 } */
+
+.hov span {
+  display: none;
+  position: absolute;
+  color: #fff;
+  background: #000;
+
+  top: -25px;
+  right: -57px;
+  border-radius: 6px;
+  padding: 5px 3px;
+}
+
+.hov {
+  position: relative;
+}
+
+.hov:hover span {
+  display: block;
+  text-align: center;
+}
