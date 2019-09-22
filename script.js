@@ -260,13 +260,23 @@ function displayStudent(student, index) {
 
     if (student.middlename == "-middlename-") {
       modal.querySelector(".middlename").classList.add("hide");
-    } else if (student.nickname == "-nickname-") {
+    }
+
+    if (student.nickname == "-nickname-") {
       modal.querySelector(".nickname").classList.add("hide");
     }
 
     if (student.expelled) {
       document.querySelector("[data-field=expell]").innerHTML =
         "STUDENT EXPELLED";
+    }
+
+    if (student.prefect) {
+      document.querySelector(".prefect-modal").classList.add("prefectActiv");
+      document.querySelector(".prefect-modal").classList.add("glow");
+    } else {
+      document.querySelector(".prefect-modal").classList.remove("prefectActiv");
+      document.querySelector(".prefect-modal").classList.remove("glow");
     }
 
     let imgModal = document.querySelector(".img-modal");
