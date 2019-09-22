@@ -157,8 +157,9 @@ select {
   background-position: center;
   background-size: cover;
   position: absolute;
-  right: 23px;
-  bottom: 47px;
+  /* right: 23px; */
+  bottom: 100px;
+  right: 150px;
   background-image: url(../images/things/magic-wandfinal.png);
   background-color: transparent;
 }
