@@ -12,6 +12,12 @@
 <body id="wrapper">
   <!-- TITLE -->
   <h1 id="title">List of students enrolled at Hogwarts in 1991</h1>
+  <div id="magicTools">
+    <div id="magicToolsImg">
+      <img src="images/things/maginc-tools3.png" alt="img">
+    </div>
+
+  </div>
   <div class="list">
     <p>Expelled students: <span class="expelledStudents"></span></p>
     <p>Current students: <span class="nonExpelledStudents"></span></p>
@@ -19,29 +25,37 @@
     <p>Ravenclaw: <span class="ravenclawStudents"></span></p>
     <p>Hufflepuff: <span class="hufflepuffStudents"></span></p>
     <p>Slytherin: <span class="slytherinStudents"></span></p>
+    <hr />
   </div>
   <div class="options">
     <!-- SORT OPTION -->
-    <label for="sort" class="sort">Sort by:</label>
-    <select name="sort" id="sort">
-      <option value="all">None</option>
-      <option value="firstname">First name</option>
-      <option value="lastname">Last name</option>
-      <option value="house">House</option>
-    </select>
+    <div class="srt">
+      <label for="sort" class="sort">Sort by:</label>
+      <select name="sort" id="sort">
+        <option value="all">None</option>
+        <option value="firstname">First name</option>
+        <option value="lastname">Last name</option>
+        <option value="house">House</option>
+      </select>
+    </div>
+
     <!-- FILTER OPTION -->
-    <label for="filter" class="filter">Filter by:</label>
-    <select name="filter" id="filter">
-      <option value="all">All</option>
-      <option value="Gryffindor">Gryffindor</option>
-      <option value="Ravenclaw">Ravenclaw</option>
-      <option value="Hufflepuff">Hufflepuff</option>
-      <option value="Slytherin">Slytherin</option>
-    </select>
-    <label for="displayExpelledLister">Expelled :</label>
-    <button id="displayExpelledList">All</button>
-    <hr />
+    <div class="flt">
+      <label for="filter" class="filter">Filter by:</label>
+      <select name="filter" id="filter">
+        <option value="all">All</option>
+        <option value="Gryffindor">Gryffindor</option>
+        <option value="Ravenclaw">Ravenclaw</option>
+        <option value="Hufflepuff">Hufflepuff</option>
+        <option value="Slytherin">Slytherin</option>
+      </select>
+    </div>
+    <div class="exp">
+      <label for="displayExpelledLister">Expelled :</label>
+      <button id="displayExpelledList">All</button>
+    </div>
   </div>
+  <hr />
   <!-- LIST HERE -->
   <main id="mainslisttudents">
     <ol class="listInfo"></ol>
