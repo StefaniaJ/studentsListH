@@ -320,6 +320,20 @@ select {
   margin-bottom: 65px;
 }
 
+.squad-modal {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/things/squad3.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-color: transparent;
+  right: 300px;
+  bottom: 80px;
+}
+
 /* .remove {
   animation: zoomIn 3s forwards;
 }
