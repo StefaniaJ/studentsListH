@@ -187,7 +187,6 @@ function sortStudentsBy(sortBy) {
   displayList(currentList);
 }
 
-
 function displayList(students) {
   // Clear the students list first
   listInfo.innerHTML = "";
@@ -493,6 +492,7 @@ const Student = {
 close.addEventListener("click", () => modal.classList.add("hide"));
 
 //HOW TO CREATE UUID
+//This function will give us an unique id for every students
 // source: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
   return "xxxxx-xxxx-4xxx-yxxx-xxxxxx".replace(/[xy]/g, function(c) {
