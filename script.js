@@ -93,7 +93,7 @@ function prepareStudentInfo(jsonData) {
     // student.prefect = false;
 
     //Squad status
-    student.squad = false;
+    // student.squad = false;
 
     //Edit the name
     let info = jsonObject.fullname.trim();
@@ -135,7 +135,7 @@ function prepareStudentInfo(jsonData) {
   newStudent.id = "041097";
   newStudent.expelled = false;
   // newStudent.prefect = false;
-  newStudent.squad = false;
+  // newStudent.squad = false;
   allStudents.push(newStudent);
 
   //Rebuild the list
@@ -289,26 +289,10 @@ function displayStudent(student, index) {
 
     //Inquisitorial squad
     const squadClass = document.querySelector(".squad-modal");
-    const squadInfo = document.querySelector(".squadInfo-modal");
     squadClass.dataset.id = student.id;
     squadClass.addEventListener("click", addSquadStatus);
 
-    if (student.house !== "Slytherin") {
-      squadClass.classList.add("hide");
-      squadInfo.classList.add("hide");
-    } else {
-      squadClass.classList.remove("hide");
-      squadInfo.classList.remove("hide");
-    }
-    if (student.squad) {
-      squadInfo.innerHTML = `delete student from Inquisitorial Squad`;
-    } else {
-      squadInfo.innerHTML = `add a student to Inquisitorial Squad`;
-    }
-    // if (student.squad === false) {
-    //   squadInfo.innerHTML = ``;
-    // }
-
+    //Students img
     let imgModal = document.querySelector(".img-modal");
     imgModal.src =
       "images/" +
@@ -482,7 +466,6 @@ function addPrefectStatus(event) {
 
 //MAKE INQUISITORIAL SQUAD FUNCTION
 function addSquadStatus(event) {
-  const squadInfo = document.querySelector(".squadInfo-modal");
   const squadClass = document.querySelector(".squad-modal");
   let element = event.target;
   const clickedId = element.dataset.id;
@@ -504,17 +487,16 @@ function addSquadStatus(event) {
   ) {
     allStudents[listId].squad = false;
     currentList[currentListId].squad = false;
-
-    // squadClass.innerHTML = ``;
-    squadInfo.innerHTML = `add to Inquisitorial Squad`;
+    squadClass.classList.remove("glow");
   } else if (allStudents[listId].house == "Slytherin") {
     allStudents[listId].squad = true;
     currentList[currentListId].squad = true;
     console.log("students added squad status");
-    squadInfo.innerHTML = `${allStudents[listId].firstname} is a member of the Inquisitorial Squad`;
-    squadClass.innerHTML = `delete from Inquisitorial Squad`;
+    squadClass.classList.add("glow");
   } else {
-    console.log("added");
+    alert(
+      "Only students from Slytherin house can be added to Inquisitorial Squad!"
+    );
   }
 }
 
@@ -529,7 +511,7 @@ const Student = {
   id: "-id-",
   expelled: false,
   prefect: "",
-  squad: false
+  squad: " "
 };
 
 //Add global eventListeners
