@@ -260,10 +260,14 @@ function displayStudent(student, index) {
 
     if (student.middlename == "-middlename-") {
       modal.querySelector(".middlename").classList.add("hide");
+    } else {
+      modal.querySelector(".middlename").classList.remove("hide");
     }
 
     if (student.nickname == "-nickname-") {
       modal.querySelector(".nickname").classList.add("hide");
+    } else {
+      modal.querySelector(".nickname").classList.remove("hide");
     }
 
     if (student.expelled) {
