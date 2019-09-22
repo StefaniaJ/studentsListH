@@ -157,9 +157,9 @@ select {
   background-position: center;
   background-size: cover;
   position: absolute;
-  /* right: 23px; */
+  right: 23px;
   bottom: 100px;
-  right: 150px;
+  /* right: 150px; */
   background-image: url(../images/things/magic-wandfinal.png);
   background-color: transparent;
 }
@@ -237,6 +237,11 @@ select {
   bottom: 47px;
 }
 
+.prefectBtn:hover {
+  animation: glowing 0.5s infinite alternate;
+}
+
+
 #articlestudents.img-templat {
   margin: 0 auto;
   margin-top: 30px;
@@ -301,6 +306,10 @@ select {
   display: none;
 }
 
+.hideM {
+  display: none;
+}
+
 .house-img-modal {
   width: 100px;
 }
@@ -345,7 +354,7 @@ select {
   }
 } */
 
-.hov span {
+.text span {
   display: none;
   position: absolute;
   color: #fff;
@@ -357,11 +366,32 @@ select {
   padding: 5px 3px;
 }
 
-.hov {
+.text {
   position: relative;
 }
 
-.hov:hover span {
+.text:hover span {
+  display: block;
+  text-align: center;
+}
+
+.text1 .span1 {
+  display: none;
+  position: absolute;
+  color: #fff;
+  background: #000;
+
+  top: -25px;
+  right: -57px;
+  border-radius: 6px;
+  padding: 5px 3px;
+}
+
+.text1 {
+  position: relative;
+}
+
+.text1:hover .span1 {
   display: block;
   text-align: center;
 }

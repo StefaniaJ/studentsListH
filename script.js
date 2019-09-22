@@ -24,8 +24,6 @@ const modal = document.querySelector(".modal-bg");
 const close = document.querySelector(".close");
 const listInfo = document.querySelector("#mainslisttudents");
 const displayExpelledList = document.querySelector("#displayExpelledList");
-// const exp = document.querySelector("[data-action=remove]");
-// const expId = document.querySelector("[data-id=remove]");
 
 // START FUNCTION
 function start() {
@@ -47,8 +45,6 @@ function start() {
   // AddEventListener for showing expelled students
   displayExpelledList.addEventListener("click", seeExpelled);
 
-  // // Click and expell a student
-  modal.addEventListener("click", expellStudent);
   //Load JSON data
   loadJSON();
 }
@@ -237,11 +233,11 @@ function displayStudent(student, index) {
     field.textContent = student[prop];
   });
 
-  // //  Index on the remove button
-  // clone.querySelector("[data-action=remove]").dataset.index = index;
+  //  Index on the remove button
+  clone.querySelector("[data-action=remove]").dataset.index = index;
 
-  // // Set an id to remove button
-  // clone.querySelector("[data-id=remove]").dataset.id = student.id;
+  // Set an id to remove button
+  clone.querySelector("[data-id=remove]").dataset.id = student.id;
 
   const prefectTemp = clone.querySelector("[data-field=prefect]");
   prefectTemp.dataset.id = student.id;
@@ -278,27 +274,11 @@ function displayStudent(student, index) {
       modal.querySelector(".nickname").classList.remove("hide");
     }
 
-    //  Index on the remove button
-    // exp.dataset.index = index;
+    if (student.expelled) {
+      document.querySelector("[data-field=expell]").innerHTML =
+        "STUDENT EXPELLED";
+    }
 
-    // // Set an id to remove button
-    // expId.dataset.id = student.id;
-
-    // // removeBtn.classList.add;
-    // if (student.expelled) {
-    //   modal.classList.add("remove");
-    //   // exp.innerHTML = "STUDENT EXPELLED";
-    //   // } else {
-    //   modal.classList.remove("remove");
-    // }
-
-    const expellBtn = document.querySelector("[data-action=remove]");
-    const expId = document.querySelector("[data-id=remove]");
-    expellBtn.dataset.index = index;
-    expId.dataset.id = student.id;
-    // expellBtn.dataset.attribute = student.id;
-
-    // /////////////////////
     if (student.prefect) {
       document.querySelector(".prefect-modal").classList.add("prefectActiv");
       document.querySelector(".prefect-modal").classList.add("glow");
@@ -424,14 +404,13 @@ function expellStudent(event) {
     element.parentElement.classList.add("remove");
     element.parentElement.addEventListener("animationend", function() {
       element.parentElement.remove();
-      modal.classList.add("hide");
     });
 
     showList(currentList, expelledList);
   } else if (element.dataset.id === "041097") {
-    modal.classList.add("donttouch");
-    modal.addEventListener("animationend", function() {
-      modal.classList.remove("donttouch");
+    element.parentElement.classList.add("donttouch");
+    element.parentElement.addEventListener("animationend", function() {
+      element.parentElement.classList.remove("donttouch");
     });
   }
 }

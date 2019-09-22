@@ -50,39 +50,38 @@
   <template id="student">
     <article id="articlestudents">
       <img class="img-template" src="" alt="" />
-      <a class="hov" href="#">Hover Me!<span class="tooltip">Hello, World!</span></a>
       <h3>First name: <span data-field="firstname"></span></h3>
       <h3>Last name: <span data-field="lastname"></span></h3>
       <p>House: <span data-field="house"></span></p>
-      <button data-field="prefect" data-id="prefect" class="prefectBtn"></button>
+      <button data-action="remove" data-id="remove" class="removeBtn "></button>
+      <button data-field="prefect" data-id="prefect" class="prefectBtn "></button>
       <button class="btn" data-student=""><a>More info</a></button>
     </article>
   </template>
 
   <!-- MODAL -->
-  <!--TODO: add more option !! -->
   <div class="modal-bg hide modal">
-    <div>
-      <article class="modal-content">
-        <span class="close">&times;</span>
-        <img class="img-modal" src="" alt="" />
-        <h3>First name: <span data-field="firstname"></span></h3>
-        <h3 class="middlename">Middle name: <span data-field="middlename"></span></h3>
-        <h3 class="nickname">Nick name: <span data-field="nickname"></span></h3>
-        <h3>Last name: <span data-field="lastname"></span></h3>
-        <p>House: <span data-field="house"></span></p>
-        <p>Gender: <span data-field="gender"></span></p>
-        <p>Blood status: <span data-field="blood"></span></p>
-        <button data-action="remove" data-id="remove" class="removeBtn"></button>
-        <!-- <p data-field="expell"></p> -->
-        <p class="prefect-modal"></p>
-        <p data-field="squad" id="squad" class="squad-modal"></p>
-        <img class="house-img-modal" src="" alt="" />
+    <article class="modal-content">
+      <span class="close">&times;</span>
+      <img class="img-modal" src="" alt="" />
+      <h3>First name: <span data-field="firstname"></span></h3>
+      <h3 class="middlename">Middle name: <span data-field="middlename"></span></h3>
+      <h3 class="nickname">Nick name: <span data-field="nickname"></span></h3>
+      <h3>Last name: <span data-field="lastname"></span></h3>
+      <p>House: <span data-field="house"></span></p>
+      <p>Gender: <span data-field="gender"></span></p>
+      <p>Blood status: <span data-field="blood"></span></p>
+      <p data-field="expell"></p>
+      <p class="prefect-modal"></p>
+      <p data-field="squad" id="squad" class="squad-modal"></p>
+      <p class="squadInfo-modal"></p>
+      <img class="house-img-modal" src="" alt="" />
 
-      </article>
-    </div>
 
-    <script src="script.js"></script>
+    </article>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
