@@ -459,7 +459,7 @@ function addPrefectStatus(event) {
     element.classList.add("prefectActiv");
   } else {
     alert(
-      `There are already two prefects in the same house! First, revoke the prefect status from a student from a house when you want to add another one. The current prefects' students are: ${currentPrefect[0].firstname} and ${currentPrefect[1].firstname}!`
+      `There are already two prefects in the same house! First, revoke a student's prefect status from a house if you want to add another one. The current prefects' students are: ${currentPrefect[0].firstname} and ${currentPrefect[1].firstname}!`
     );
   }
 }
