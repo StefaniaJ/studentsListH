@@ -28,7 +28,6 @@ html[data-colors="Slytherin"] {
   --color-bg: green;
 }
 
-
 body {
   max-width: 100%;
   margin: auto;
@@ -36,7 +35,6 @@ body {
   font-family: sans-serif;
   background-color: #9839c9;
 }
-
 
 .img-template,
 .img-modal {
@@ -69,9 +67,7 @@ body {
 
 #magicTools {
   height: 30vh;
-
 }
-
 
 /* SORT, FILTER */
 select {
@@ -105,8 +101,6 @@ select {
   margin-left: 7px;
 }
 
-
-
 /* Template */
 #mainslisttudents {
   display: grid;
@@ -139,7 +133,6 @@ select {
   position: absolute;
   left: 0px;
   bottom: 0;
-
 }
 
 .btn a {
@@ -158,7 +151,7 @@ select {
   position: absolute;
   right: 23px;
   bottom: 46px;
-  background-image: url(../images/houses/magic-wandfinal.png);
+  background-image: url(images/houses/magic-wandfinal.png);
   background-color: transparent;
 }
 
@@ -222,7 +215,7 @@ select {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  background-image: url(../images/houses/prefectfinal.png);
+  background-image: url(images/houses/prefectfinal.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -236,7 +229,6 @@ select {
   animation: glowing 0.5s infinite alternate;
 }
 
-
 #articlestudents.img-templat {
   margin: 0 auto;
   margin-top: 30px;
@@ -246,7 +238,7 @@ select {
   cursor: pointer;
   width: 40px;
   height: 40px;
-  background-image: url(../images/houses/prefect-activ.png);
+  background-image: url(images/houses/prefect-activ.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -255,7 +247,6 @@ select {
   left: 23px;
   bottom: 47px;
 }
-
 
 /* ////////  Modal ///////*/
 .modal-bg {
@@ -300,10 +291,10 @@ select {
 }
 
 .house-img-modal {
-  width: 100px;
+  width: 70px;
   position: absolute;
-  top: 10px;
-  left: 50px;
+  top: 5px;
+  left: 20px;
 }
 
 .glow {
@@ -316,7 +307,6 @@ select {
   }
 }
 
-
 .prefect-modal {
   margin-left: 260px;
   margin-bottom: 65px;
@@ -326,14 +316,13 @@ select {
   cursor: pointer;
   width: 60px;
   height: 60px;
-  background-image: url(../images/houses/squad3.jpg);
+  background-image: url(images/houses/squad3.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-color: transparent;
   margin: auto;
 }
-
 
 /* ////////  Grid  ///////*/
 #wrapper {
@@ -373,25 +362,41 @@ main {
   grid-area: main;
 }
 
-
-
 /* ////////  Media  ///////*/
+@media (min-width: 600px) {
+  .house-img-modal {
+    top: 6px;
+    left: 35px;
+  }
+}
 
-@media(min-width: 700px) {
+@media (min-width: 700px) {
   #articlestudents {
     width: 335px;
   }
-}
-
-@media(min-width: 850px) {
-  .options {
-    display: contents;
+  .house-img-modal {
+    top: 17px;
+    left: 45px;
   }
 }
 
+@media (min-width: 850px) {
+  .options {
+    display: contents;
+  }
+  .house-img-modal {
+    width: 100px;
+    top: 20px;
+    left: 60px;
+  }
+}
 
-@media(min-width: 1030px) {
+@media (min-width: 1030px) {
   #articlestudents {
     width: 330px;
+  }
+  .house-img-modal {
+    top: 23px;
+    left: 72px;
   }
 }
